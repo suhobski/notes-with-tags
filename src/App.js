@@ -1,15 +1,33 @@
-import {makeStyles, Paper} from "@material-ui/core"
+import {CardContent, makeStyles, Paper} from "@material-ui/core"
+import Header from './components/Header'
+import CreateNoteForm from './components/CreateNoteForm'
+import Board from './components/Board'
+import Footer from './components/Footer'
 
 const useStyles = makeStyles(theme => ({
     root: {
-        background: 'red',
-        // position: 'relative',
-        // display: 'flex',
-        // alignItems: 'flex-start',
-        // [theme.breakpoints.down('sm')]: {
-        //     flexDirection: 'column',
-        //     justifyItems: 'stretch',
-        // }
+        display: 'grid',
+        gridTemplateRows: 'auto 1fr auto',
+        minHeight: '100vh',
+        padding: 8,
+        borderRadius: 0,
+        background: '#4D4D4D',
+        fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+    },
+    main: {
+        display: 'grid',
+        gridTemplateColumns: 'auto minmax(300px, 33%)',
+        alignItems: 'start',
+        gap: 8,
+        padding: '8px 0',
+        [theme.breakpoints.down('xs')]: {
+            gridTemplateColumns: 'auto',
+        }
+    },
+    form: {
+        [theme.breakpoints.down('xs')]: {
+            display: 'none',
+        }
     },
   }))
 
@@ -18,10 +36,14 @@ const App = () => {
 
     return (
         <Paper className={classes.root}>
-            <header>
-                <h1>Hello!</h1>
-            </header>
-            <p>Article</p>
+            <Header />
+            <CardContent className={classes.main} >
+                <Board />
+                <div className={classes.form}>
+                    <CreateNoteForm />
+                </div>
+            </CardContent>
+            <Footer />
         </Paper>
     );
 }
