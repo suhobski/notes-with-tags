@@ -56,7 +56,8 @@ const CreateNoteForm = () => {
         // eslint-disable-next-line no-console
         console.log({
           note: data.get('note'),
-          noteTags: tags
+          noteTags: tags,
+          date: new Date(),
         });
         setNote('');
         setTags(null);
@@ -85,9 +86,7 @@ const CreateNoteForm = () => {
                 </ul>
                 <Button
                     type="submit"
-                    // fullWidth
                     variant="contained"
-                    // sx={{ mt: 3, mb: 2 }}
                 >
                     Ok
                 </Button>
