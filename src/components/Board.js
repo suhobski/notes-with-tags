@@ -11,6 +11,9 @@ const useStyles = makeStyles({
         borderRadius: 12,
         color: '#5A5A65',
     },
+    board__title: {
+        marginBottom: 8,
+    },
     notesWrapper: {
         padding: 8,
         background: '#F8F8F8',
