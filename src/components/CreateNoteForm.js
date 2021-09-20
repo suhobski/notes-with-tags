@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import {Button, Card, makeStyles, TextField} from "@material-ui/core"
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
+import { addNote } from '../store/actions/board';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -38,7 +40,7 @@ const CssTextField = styled(TextField)({
     },
   });
 
-const CreateNoteForm = () => {
+const CreateNoteForm = ({onAddNote}) => {
     const classes = useStyles();
     const [note, setNote] = useState('');
     const [tags, setTags] = useState(null);
@@ -54,10 +56,10 @@ const CreateNoteForm = () => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
-          note: data.get('note'),
+        onAddNote({
+          noteText: data.get('note'),
           noteTags: tags,
-          date: new Date(),
+          noteDate: new Date(),
         });
         setNote('');
         setTags(null);
@@ -96,4 +98,17 @@ const CreateNoteForm = () => {
     );
 }
 
-export default CreateNoteForm;
+// function mapStateToProps(state) {
+//   return {
+//     category: state.filter.category,
+//     level: state.filter.level,
+//     intensity: state.filter.intensity,
+//   }
+// }
+  
+function mapDispatchToProps(dispatch) {
+  return {
+    onAddNote: (note) => dispatch(addNote(note)),
+  }
+}
+export default connect(null, mapDispatchToProps)(CreateNoteForm);

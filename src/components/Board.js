@@ -2,6 +2,7 @@ import React from 'react'
 import {Card, makeStyles} from "@material-ui/core"
 import Filter from './Filter';
 import Note from './Note';
+import { connect } from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -20,21 +21,30 @@ const useStyles = makeStyles({
     }
 })
 
-const Board = () => {
+const Board = ({notes}) => {
 
     const classes = useStyles();
 
+    console.log('Board notes', notes);
     return (
         <Card className={classes.board}>
             <h2 className={classes.board__title}>Board</h2>
             <Filter />
             <Card className={classes.notesWrapper}>
-                <Note />
-                <Note />
-                <Note />
+                {
+                    notes.length === 0
+                    ? null
+                    : notes.map((note, index) => <Note note={note} key={note.noteText + index}/>)
+                }
             </Card>
         </Card>    
     );
 }
 
-export default Board;
+function mapStateToProps(state) {
+    return {
+        notes: state.board.notes,
+    }
+}
+
+export default connect(mapStateToProps)(Board);
