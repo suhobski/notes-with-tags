@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const useStyles = makeStyles({
     board: {
-        padding: 8,
+        padding: '16px 8px',
         background: '#FFFFFF',
         borderRadius: 12,
         color: '#5A5A65',
@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     notesWrapper: {
         padding: 8,
         background: '#F8F8F8',
+        color: '#5A5A65',
     }
 })
 
@@ -31,6 +32,8 @@ const Board = ({notes}) => {
             <h2 className={classes.board__title}>Board</h2>
             <Filter />
             <Card className={classes.notesWrapper}>
+                <h3>Notes</h3>
+
                 {
                     notes.length === 0
                     ? null
