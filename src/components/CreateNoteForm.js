@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: 8,
+        padding: '16px 8px',
         color: '#5A5A65',
         background: '#FFFFFF',
         borderRadius: 12,
@@ -79,7 +79,6 @@ const CreateNoteForm = ({onAddNote}) => {
                     maxRows={4}
                     value={note}
                     onChange={handleChange}
-                    autoFocus
                 />
                 <ul className={classes['note__tag-list']}>
                     {
@@ -89,6 +88,7 @@ const CreateNoteForm = ({onAddNote}) => {
                 <Button
                     type="submit"
                     variant="contained"
+                    fullWidth
                 >
                     Ok
                 </Button>
