@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { addNote } from '../store/actions/board';
 import { connect } from 'react-redux';
+import uid from 'uid2';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -58,6 +59,7 @@ const CreateNoteForm = ({onAddNote, closeModal}) => {
         if (data.get('note').length > 0) {
           // eslint-disable-next-line no-console
           onAddNote({
+            noteId: uid(10),
             noteText: data.get('note'),
             noteTags: tags,
             noteDate: new Date(),
