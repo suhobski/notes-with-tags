@@ -16,8 +16,7 @@ const useStyles = makeStyles(theme => ({
     },
     main: {
         display: 'grid',
-        gridTemplateColumns: 'auto minmax(300px, 33%)',
-        alignItems: 'start',
+        gridTemplateColumns: 'minmax(300px, 33%) auto',
         gap: 8,
         padding: '8px 0',
         [theme.breakpoints.down('xs')]: {
@@ -38,10 +37,10 @@ const App = () => {
         <Paper className={classes.root}>
             <Header />
             <CardContent className={classes.main} >
-                <Board />
                 <div className={classes.form}>
                     <CreateNoteForm />
                 </div>
+                <Board />
             </CardContent>
             <Footer />
         </Paper>
