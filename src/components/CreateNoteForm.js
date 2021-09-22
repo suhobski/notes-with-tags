@@ -55,14 +55,17 @@ const CreateNoteForm = ({onAddNote}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        onAddNote({
-          noteText: data.get('note'),
-          noteTags: tags,
-          noteDate: new Date(),
-        });
-        setNote('');
-        setTags(null);
+        if (data.get('note').length > 0) {
+          // eslint-disable-next-line no-console
+          onAddNote({
+            noteText: data.get('note'),
+            noteTags: tags,
+            noteDate: new Date(),
+          });
+          setNote('');
+          setTags(null);
+        }
+        
       };
 
     return (
