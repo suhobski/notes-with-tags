@@ -1,5 +1,7 @@
 import React from 'react'
 import {Card, makeStyles} from "@material-ui/core"
+import { connect } from 'react-redux';
+import { deleteNote } from '../store/actions/board';
 
 const useStyles = makeStyles({
     note: {
@@ -67,14 +69,15 @@ const useStyles = makeStyles({
     }
 })
 
-const Note = ({note}) => {
+const Note = ({note, onDeleteNote}) => {
     const classes = useStyles();
-    const {noteDate, noteText, noteTags} = note;
+    const {noteId, noteDate, noteText, noteTags} = note;
     const date = noteDate.toLocaleTimeString().substring(0, 5) + ' ' + noteDate.toLocaleDateString();
+
 
     return (
         <Card className={classes.note}>
-            <button className={classes['note__button--delete']} />
+            <button className={classes['note__button--delete']} onClick={() => onDeleteNote(noteId)} />
             <button className={classes['note__button--edit']} />
             <p className={classes.note__date}>{date}</p>
             <p className={classes.note__text}>{noteText}</p>
@@ -87,4 +90,10 @@ const Note = ({note}) => {
     );
 }
 
-export default Note;
+function mapDispatchToProps(dispatch) {
+    return {
+        onDeleteNote: (id) => dispatch(deleteNote(id)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Note);
