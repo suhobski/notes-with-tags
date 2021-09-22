@@ -40,7 +40,7 @@ const CssTextField = styled(TextField)({
     },
   });
 
-const CreateNoteForm = ({onAddNote}) => {
+const CreateNoteForm = ({onAddNote, closeModal}) => {
     const classes = useStyles();
     const [note, setNote] = useState('');
     const [tags, setTags] = useState(null);
@@ -64,8 +64,8 @@ const CreateNoteForm = ({onAddNote}) => {
           });
           setNote('');
           setTags(null);
+          if (closeModal) closeModal();
         }
-        
       };
 
     return (
@@ -101,14 +101,6 @@ const CreateNoteForm = ({onAddNote}) => {
     );
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     category: state.filter.category,
-//     level: state.filter.level,
-//     intensity: state.filter.intensity,
-//   }
-// }
-  
 function mapDispatchToProps(dispatch) {
   return {
     onAddNote: (note) => dispatch(addNote(note)),

@@ -69,6 +69,11 @@ const Board = ({notes}) => {
         setIsOpenModal(!isOpenModal);
     }
 
+    const closeModal = () => {
+        setIsOpenModal(false);
+        setButtonRotate(0);
+    }
+
     console.log('Board notes', notes);
     return (
         <Card className={classes.board}>
@@ -93,7 +98,7 @@ const Board = ({notes}) => {
             {
                 isOpenModal 
                 ?   <Card className={classes.ModalCreateNote} onClick={handleModalClick}>
-                        <CreateNoteForm />
+                        <CreateNoteForm closeModal={() => closeModal()}/>
                     </Card>
                 : null 
             }
