@@ -39,7 +39,7 @@ const CssTextField = styled(TextField)({
         borderColor: '#5A5A65',
       },
     },
-  });
+});
 
 const CreateNoteForm = ({onAddNote, closeModal}) => {
     const classes = useStyles();
@@ -81,6 +81,7 @@ const CreateNoteForm = ({onAddNote, closeModal}) => {
                     variant="outlined"
                     label="write note..."
                     multiline
+                    autoFocus
                     maxRows={4}
                     value={note}
                     onChange={handleChange}

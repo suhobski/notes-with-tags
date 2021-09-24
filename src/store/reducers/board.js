@@ -14,7 +14,7 @@ export default function boardReducer(state = initialState, action) {
     case ON_DELETE_NOTE:
       return {
         ...state,
-        notes: state.notes.filter(note => note.noteId != action.id)
+        notes: state.notes.filter(note => note.noteId !== action.id)
       };
     default:
       return state

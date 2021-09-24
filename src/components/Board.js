@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Button, Card, makeStyles} from "@material-ui/core"
 import Filter from './Filter';
 import Note from './Note';
@@ -51,10 +51,26 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Board = ({notes}) => {
+const Board = ({notes, filterTag}) => {
+    console.log('notes', notes);
+    console.log('filtefTag', filterTag);
     const classes = useStyles();
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [buttonRotate, setButtonRotate] = useState(0);
+    const [boardNotes, setBoardNotes] = useState(notes);
+    useEffect(() => {
+        if (filterTag.length >= 2) {
+            setBoardNotes(notes.filter(note => note.noteTags.includes(filterTag)))
+        } else {
+            setBoardNotes(notes)
+        }
+    }, [notes, filterTag])
+    
+    // useEffect(() => {
+    //     if (filterTag.length >= 2) {
+    //     }
+    // }, [filterTag])
+    
 
     const handleModalClick = e => {
         if (e.target.classList.contains('MuiCard-root')) {
@@ -74,7 +90,6 @@ const Board = ({notes}) => {
         setButtonRotate(0);
     }
 
-    console.log('Board notes', notes);
     return (
         <Card className={classes.board}>
             <h2 className={classes.board__title}>Board</h2>
@@ -82,9 +97,9 @@ const Board = ({notes}) => {
             <Card className={classes.notesWrapper}>
                 <h3>Notes</h3>
                 {
-                    notes.length === 0
+                    boardNotes.length === 0
                     ? <p>...</p>
-                    : notes.map((note, index) => <Note note={note} key={note.noteText + index}/>)
+                    : boardNotes.map((note, index) => <Note note={note} key={note.noteText + index}/>)
                 }
             </Card>
             <Button 
@@ -110,6 +125,7 @@ const Board = ({notes}) => {
 function mapStateToProps(state) {
     return {
         notes: state.board.notes,
+        filterTag: state.filter.tag,
     }
 }
 

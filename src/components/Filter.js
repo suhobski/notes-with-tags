@@ -1,5 +1,9 @@
-import React from 'react'
-import {Card, makeStyles} from "@material-ui/core"
+import React, { useState } from 'react'
+import {Card, makeStyles, TextField} from "@material-ui/core"
+import { styled } from '@mui/material/styles';
+import { setTag } from '../store/actions/filter';
+import { connect } from 'react-redux';
+
 
 const useStyles = makeStyles({
     root: {
@@ -9,14 +13,47 @@ const useStyles = makeStyles({
     }
 })
 
-const Filter = () => {
+const CssTextField = styled(TextField)({
+    '& label.Mui-focused': {
+      color: '#5A5A65',
+    },
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: '#5A5A65',
+      },
+    },
+});
+
+const Filter = ({onSetTag}) => {
     const classes = useStyles();
+    const [tag, setTag] = useState('');
+
+    const handleChange = (e) => {
+        const tagText = e.target.value;
+        setTag(tagText);
+        onSetTag('#' + tagText.trim());
+    }
 
     return (
         <Card className={classes.root}>
-            <p>Filter</p>
+            <CssTextField 
+                className={classes.textInput}
+                id="note"
+                name='note'
+                variant="outlined"
+                label="write tag..."
+                fullWidth
+                value={tag}
+                onChange={handleChange}
+            />
         </Card>    
     );
 }
 
-export default Filter;
+function mapDispatchToProps(dispatch) {
+    return {
+        onSetTag: (tag) => dispatch(setTag(tag)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Filter);
