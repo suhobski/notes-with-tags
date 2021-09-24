@@ -52,26 +52,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Board = ({notes, filterTag}) => {
-    console.log('notes', notes);
-    console.log('filtefTag', filterTag);
     const classes = useStyles();
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [buttonRotate, setButtonRotate] = useState(0);
     const [boardNotes, setBoardNotes] = useState(notes);
-    useEffect(() => {
-        if (filterTag.length >= 2) {
-            setBoardNotes(notes.filter(note => note.noteTags.includes(filterTag)))
-        } else {
-            setBoardNotes(notes)
-        }
-    }, [notes, filterTag])
     
-    // useEffect(() => {
-    //     if (filterTag.length >= 2) {
-    //     }
-    // }, [filterTag])
-    
-
     const handleModalClick = e => {
         if (e.target.classList.contains('MuiCard-root')) {
             setIsOpenModal(false);
@@ -89,6 +74,14 @@ const Board = ({notes, filterTag}) => {
         setIsOpenModal(false);
         setButtonRotate(0);
     }
+
+    useEffect(() => {
+        if (filterTag.length >= 2) {
+            setBoardNotes(notes.filter(note => note.noteTags.includes(filterTag)))
+        } else {
+            setBoardNotes(notes)
+        }
+    }, [notes, filterTag])
 
     return (
         <Card className={classes.board}>
@@ -115,7 +108,7 @@ const Board = ({notes, filterTag}) => {
                 ?   <Card className={classes.ModalCreateNote} onClick={handleModalClick}>
                         <CreateNoteForm closeModal={() => closeModal()}/>
                     </Card>
-                : null 
+                :   null 
             }
             
         </Card>    
