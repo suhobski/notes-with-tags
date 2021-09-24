@@ -7,11 +7,20 @@ import { connect } from 'react-redux';
 import uid from 'uid2';
 
 const useStyles = makeStyles(theme => ({
-    root: {
+    createNoteForm: {
         padding: '16px 8px',
         color: '#5A5A65',
         background: '#FFFFFF',
         borderRadius: 12,
+    },
+    createNoteForm__title: {
+        marginBottom: 8,
+    },
+    textInputWrapper: {
+        marginBottom: 8,
+        padding: '0 8px',
+        background: '#F8F8F8',
+        color: '#5A5A65',
     },
     textInput: {
         width: '100%',
@@ -71,10 +80,11 @@ const CreateNoteForm = ({onAddNote, closeModal}) => {
       };
 
     return (
-        <Card className={classes.root}>
-            <h2>Create note</h2>
+        <Card className={classes.createNoteForm}>
+            <h2 className={classes.createNoteForm__title}>Create note</h2>
             <Box component="form" onSubmit={handleSubmit} noValidate>
-                <CssTextField 
+                <Card className={classes.textInputWrapper}>
+                    <CssTextField 
                     className={classes.textInput}
                     id="note"
                     name='note'
@@ -85,7 +95,8 @@ const CreateNoteForm = ({onAddNote, closeModal}) => {
                     maxRows={4}
                     value={note}
                     onChange={handleChange}
-                />
+                    />
+                </Card>
                 <ul className={classes['note__tag-list']}>
                     {
                         tags && tags.map((tag, index) => <li className={classes.note__tag} key={tag + index}>{tag}</li>)
