@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Card, makeStyles} from "@material-ui/core"
 import { connect } from 'react-redux';
 import { deleteNote } from '../store/actions/board';
+import ModalEditNote from './ModalEditNote';
 
 const useStyles = makeStyles({
     note: {
@@ -66,14 +67,14 @@ const useStyles = makeStyles({
         '&:active': {
             backgroundColor: '#e0e0e0',
         }
-    }
+    },
 })
 
 const Note = ({note, onDeleteNote}) => {
     const classes = useStyles();
+    const [isOpenEditNoteModal, setIsOpenEditNoteModal] = useState(true);
     const {noteId, noteDate, noteText, noteTags} = note;
     const date = noteDate.toLocaleTimeString().substring(0, 5) + ' ' + noteDate.toLocaleDateString();
-
 
     return (
         <Card className={classes.note}>
@@ -86,6 +87,17 @@ const Note = ({note, onDeleteNote}) => {
                 noteTags && noteTags.map((tag, index) => <li className={classes.note__tag} key={tag + index}>{tag}</li>)
             }
             </ul>
+            {
+                isOpenEditNoteModal 
+                ?   <ModalEditNote 
+                        note={note}
+                        // closeModal={() => handleCloseModal()} 
+                    />
+                // ?   <Card className={classes.ModalCreateNote} onClick={handleModalClick}>
+                //         <CreateNoteForm closeModal={() => closeModal()}/>
+                //     </Card>
+                :   null 
+            }
         </Card>    
     );
 }
