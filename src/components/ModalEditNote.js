@@ -111,6 +111,22 @@ const ModalEditNote = ({note}) => {
     const [addTag, setAddTag] = useState('');
     const date = noteDate.toLocaleTimeString().substring(0, 5) + ' ' + noteDate.toLocaleDateString();
 
+    const handleChangeTag = (e) => {
+      const tag = e.target.value;
+      setAddTag(tag)
+    }
+
+    const onAddTagClick = () => {
+      if (addTag[0] === '#') {
+        setEditNoteTags([...editNoteTags, addTag]);
+        setAddTag('');
+      } else {
+        setEditNoteTags([...editNoteTags, '#' + addTag]);
+        setAddTag('');
+      }
+      
+    }
+
     return (
       // onSubmit={handleSubmit}
       <Box className={classes.modalEditNote} component="form" noValidate>
