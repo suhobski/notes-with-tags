@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import {Button, Card, makeStyles, TextField} from "@material-ui/core"
 import { connect } from 'react-redux';
 import { deleteNote } from '../store/actions/board';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
+import './ModalEditNote.scss'
 
 const useStyles = makeStyles({
     modalEditNote: {
@@ -56,6 +57,7 @@ const useStyles = makeStyles({
         background: '#F8F8F8',
     },
     'note__tag': {
+        position: 'relative',
         display: 'inline-block',
         margin: '0 8px 8px 0',
         padding: '0 4px',
@@ -117,14 +119,20 @@ const ModalEditNote = ({note}) => {
     }
 
     const onAddTagClick = () => {
-      if (addTag[0] === '#') {
-        setEditNoteTags([...editNoteTags, addTag]);
-        setAddTag('');
-      } else {
-        setEditNoteTags([...editNoteTags, '#' + addTag]);
-        setAddTag('');
+      if (addTag.length > 0) {
+        if (addTag[0] === '#') {
+          setEditNoteTags([...editNoteTags, addTag]);
+          setAddTag('');
+        } else {
+          setEditNoteTags([...editNoteTags, '#' + addTag]);
+          setAddTag('');
+        }
       }
-      
+    }
+
+    const deleteTag = (deleteTag) => {
+      const newTags = editNoteTags.filter(tag => tag != deleteTag);
+      setEditNoteTags(newTags)
     }
 
     return (
@@ -147,7 +155,7 @@ const ModalEditNote = ({note}) => {
             <ul className={classes['note__tag-list']}>
             {
                 editNoteTags.length > 0
-                ?   editNoteTags.map((tag, index) => <li className={classes.note__tag} key={tag + index}>{tag}</li>)
+                ?   editNoteTags.map((tag, index) => <li className={classes.note__tag} key={tag + index}>{tag}<button className="note__tag--delete" onClick={() => deleteTag(tag)}></button></li>)
                 : <p>...</p>
             }
             </ul>

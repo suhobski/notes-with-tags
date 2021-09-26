@@ -1,0 +1,34 @@
+.note__tag--delete {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #FA5C5C;
+  
+  &:active {
+    background: #DB4B4B;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 3px;
+    width: 10px;
+    height: 2px;
+    background: #F8F8F8;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
