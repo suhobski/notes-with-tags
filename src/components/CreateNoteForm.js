@@ -77,7 +77,7 @@ const CreateNoteForm = ({onAddNote, closeModal}) => {
           setTags(null);
           if (closeModal) closeModal();
         }
-      };
+    };
 
     return (
         <Card className={classes.createNoteForm}>

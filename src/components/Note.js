@@ -70,16 +70,16 @@ const useStyles = makeStyles({
     },
 })
 
-const Note = ({note, onDeleteNote}) => {
+const Note = ({note, notes, onDeleteNote}) => {
     const classes = useStyles();
-    const [isOpenEditNoteModal, setIsOpenEditNoteModal] = useState(true);
-    const {noteId, noteDate, noteText, noteTags} = note;
+    const [isOpenEditNoteModal, setIsOpenEditNoteModal] = useState(false);
+    const {noteId, noteDate, noteText, noteTags} = notes.find(stateNote => stateNote.noteId === note.noteId);
     const date = noteDate.toLocaleTimeString().substring(0, 5) + ' ' + noteDate.toLocaleDateString();
 
     return (
         <Card className={classes.note}>
             <button className={classes['note__button--delete']} onClick={() => onDeleteNote(noteId)} />
-            <button className={classes['note__button--edit']} />
+            <button className={classes['note__button--edit']} onClick={() => setIsOpenEditNoteModal(true)} />
             <p className={classes.note__date}>{date}</p>
             <p className={classes.note__text}>{noteText}</p>
             <ul className={classes['note__tag-list']}>
@@ -91,21 +91,22 @@ const Note = ({note, onDeleteNote}) => {
                 isOpenEditNoteModal 
                 ?   <ModalEditNote 
                         note={note}
-                        // closeModal={() => handleCloseModal()} 
+                        closeModal={() => setIsOpenEditNoteModal(false)} 
                     />
-                // ?   <Card className={classes.ModalCreateNote} onClick={handleModalClick}>
-                //         <CreateNoteForm closeModal={() => closeModal()}/>
-                //     </Card>
                 :   null 
             }
         </Card>    
     );
 }
-
+function mapStateToProps(state) {
+    return{
+        notes: state.board.notes
+    }
+}
 function mapDispatchToProps(dispatch) {
     return {
         onDeleteNote: (id) => dispatch(deleteNote(id)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(Note);
+export default connect(mapStateToProps, mapDispatchToProps)(Note);
