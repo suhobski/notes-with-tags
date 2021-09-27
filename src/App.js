@@ -1,38 +1,38 @@
-import React from 'react'
-import { CardContent, makeStyles, Paper } from '@material-ui/core'
-import Header from './components/Header'
-import CreateNoteForm from './components/CreateNoteForm'
-import Board from './components/Board'
-import Footer from './components/Footer'
+import React from "react";
+import { CardContent, makeStyles, Paper } from "@material-ui/core";
+import Header from "./components/Header";
+import CreateNoteForm from "./components/CreateNoteForm";
+import Board from "./components/Board";
+import Footer from "./components/Footer";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'grid',
-    gridTemplateRows: 'auto 1fr auto',
-    minHeight: '100vh',
+    display: "grid",
+    gridTemplateRows: "auto 1fr auto",
+    minHeight: "100vh",
     padding: 8,
     borderRadius: 0,
-    background: '#4D4D4D',
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+    background: "#4D4D4D",
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
   },
   main: {
-    display: 'grid',
-    gridTemplateColumns: 'minmax(300px, 33%) auto',
+    display: "grid",
+    gridTemplateColumns: "minmax(300px, 33%) auto",
     gap: 8,
-    padding: '8px 0',
-    [theme.breakpoints.down('xs')]: {
-      gridTemplateColumns: 'auto',
+    padding: "8px 0",
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "auto",
     },
   },
   form: {
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
     },
   },
-}))
+}));
 
 const App = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
@@ -45,7 +45,7 @@ const App = () => {
       </CardContent>
       <Footer />
     </Paper>
-  )
-}
+  );
+};
 
-export default App
+export default App;

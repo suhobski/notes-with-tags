@@ -7,10 +7,10 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  background: #FA5C5C;
-  
+  background: #fa5c5c;
+
   &:active {
-    background: #DB4B4B;
+    background: #db4b4b;
   }
 
   &::before,
@@ -21,7 +21,7 @@
     left: 3px;
     width: 10px;
     height: 2px;
-    background: #F8F8F8;
+    background: #f8f8f8;
   }
 
   &::before {
