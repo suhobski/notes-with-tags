@@ -88,7 +88,7 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
             id="note"
             name="note"
             variant="outlined"
-            label="write note..."
+            label="write a note..."
             multiline
             autoFocus
             maxRows={4}

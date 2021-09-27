@@ -40,7 +40,7 @@ const Filter = ({ onSetTag }) => {
         id="note"
         name="note"
         variant="outlined"
-        label="write tag..."
+        label="write a tag..."
         fullWidth
         value={tag}
         onChange={handleChange}
