@@ -1,9 +1,9 @@
 import React from "react";
-import "./Header.scss";
+import styles from "./Header.module.scss";
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className={styles.header}>
       <h1>Notes with tags</h1>
     </header>
   );
