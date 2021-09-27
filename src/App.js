@@ -1,9 +1,9 @@
 import React from "react";
 import { CardContent, makeStyles, Paper } from "@material-ui/core";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import CreateNoteForm from "./components/CreateNoteForm";
 import Board from "./components/Board";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
