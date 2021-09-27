@@ -110,9 +110,11 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const ModalEditNote = ({ closeModal, note, onEditNote }) => {
+const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
   const classes = useStyles();
-  const { noteDate, noteId, noteTags, noteText } = note;
+  const { noteDate, noteId, noteTags, noteText } = notes.find(
+    (stateNote) => stateNote.noteId === note.noteId
+  );
   const [editNoteTags, setEditNoteTags] = useState(noteTags);
   const [addTag, setAddTag] = useState("");
   const date = `${noteDate
@@ -227,6 +229,11 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
     </Box>
   );
 };
+function mapStateToProps(state) {
+  return {
+    notes: state.board.notes,
+  };
+}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -234,4 +241,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(ModalEditNote);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditNote);
