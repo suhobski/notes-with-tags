@@ -1,0 +1,131 @@
+@import "src/styles/colors";
+
+.modalEditNote {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: minmax(264px, 400px);
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+}
+
+.note {
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  color: $font-color;
+
+  & ul {
+    padding: 0.75rem 0.5rem 0;
+  }
+
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background: $background-smoke;
+  }
+
+  &__date {
+    font-size: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  &__tag-list {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    min-height: 48px;
+    border: none;
+    border-radius: 4px;
+    background: $background-smoke;
+    color: $second-font-color;
+    list-style-type: none;
+  }
+
+  &__tag {
+    position: relative;
+    display: inline-block;
+    margin: 0 1rem 0.75rem 0;
+    padding: 0 0.25rem;
+    list-style-type: none;
+    border-radius: 4px;
+    background: $background-graphite;
+    color: $second-font-color;
+
+    &--delete {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 16px;
+      height: 16px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: #fa5c5c;
+
+      &:hover,
+      &:active {
+        background: #db4b4b;
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 3px;
+        width: 10px;
+        height: 2px;
+        background: #f8f8f8;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+
+    .note &--addTag {
+      display: inline-block;
+      height: 56px;
+      margin: 0.5rem;
+      margin-right: 0;
+      padding: 0 0.25rem;
+      list-style-type: none;
+      border-radius: 4px;
+      background: #5bd497;
+      border: none;
+      color: $second-font-color;
+    }
+  }
+}
+
+.tagInputWrapper {
+  display: grid;
+  grid-template-columns: auto 100px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+
+  & Button {
+    display: inline-block;
+  }
+}
