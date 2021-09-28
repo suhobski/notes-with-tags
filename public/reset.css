@@ -6,7 +6,6 @@
 }
 
 /* Убираем внутренние отступы */
-ul[class],
 ol[class] {
   padding: 0;
 }
@@ -18,8 +17,6 @@ h2,
 h3,
 h4,
 p,
-ul,
-ul[class],
 ol[class],
 li,
 figure,
@@ -39,7 +36,6 @@ body {
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
-ul[class],
 ol[class] {
   list-style: none;
 }
