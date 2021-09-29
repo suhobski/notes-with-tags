@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, makeStyles, styled } from "@material-ui/core";
 import { connect } from "react-redux";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Filter from "../../Filter/Filter";
-import Note from "../../Note/Note";
-import ModalCreateNote from "../../ModalCreateNote/ModalCreateNote";
+import Filter from "../Filter/Filter";
+import Note from "../Note/Note";
+import ModalCreateNote from "../ModalCreateNote/ModalCreateNote";
 
 const BoardWrap = styled(Card)({
   position: "relative",
