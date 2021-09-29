@@ -6,6 +6,7 @@ import { setTag } from "../../store/actions/filter";
 import styles from "./Filter.module.scss"
 
 const CssTextField = styled(TextField)({
+  zIndex: 0,
   "& label.Mui-focused": {
     color: "#5A5A65",
   },
@@ -26,7 +27,8 @@ const Filter = ({ onSetTag }) => {
   };
 
   return (
-    <Card className={styles.root}>
+    <Card className={styles.filter}>
+      <h3>Filter</h3>
       <CssTextField
         id="note"
         name="note"

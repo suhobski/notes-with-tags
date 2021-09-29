@@ -1,12 +1,13 @@
 import React from "react";
 import { CardContent, makeStyles, Paper } from "@material-ui/core";
 import Header from "./components/Header/Header";
-import CreateNoteForm from "./components/CreateNoteForm";
-import Board from "./components/Board";
+import CreateNoteForm from "./containers/CreateNoteForm/CreateNoteForm";
+import Board from "./containers/Board/Board";
 import Footer from "./components/Footer/Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: "relative",
     display: "grid",
     gridTemplateRows: "auto 1fr auto",
     minHeight: "100vh",
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 0,
     background: "#4D4D4D",
     fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+    zIndex: 0,
   },
   main: {
     display: "grid",
