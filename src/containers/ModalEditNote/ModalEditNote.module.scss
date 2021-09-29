@@ -63,56 +63,22 @@
     background: $background-graphite;
     color: $second-font-color;
 
-    &--delete {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      width: 16px;
-      height: 16px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      background: #fa5c5c;
+  }
 
-      &:hover,
-      &:active {
-        background: #db4b4b;
-      }
-
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        top: 7px;
-        left: 3px;
-        width: 10px;
-        height: 2px;
-        background: #f8f8f8;
-      }
-
-      &::before {
-        transform: rotate(45deg);
-      }
-
-      &::after {
-        transform: rotate(-45deg);
-      }
-    }
-
-    .note &--addTag {
-      display: inline-block;
-      height: 56px;
-      margin: 0.5rem;
-      margin-right: 0;
-      padding: 0 0.25rem;
-      list-style-type: none;
-      border-radius: 4px;
-      background: #5bd497;
-      border: none;
-      color: $second-font-color;
-    }
+  & &--addTag {
+    display: inline-block;
+    height: 56px;
+    margin: 0.5rem;
+    margin-right: 0;
+    padding: 0 0.25rem;
+    list-style-type: none;
+    border-radius: 4px;
+    background: #5bd497;
+    border: none;
+    color: $second-font-color;
   }
 }
+
 
 .tagInputWrapper {
   display: grid;

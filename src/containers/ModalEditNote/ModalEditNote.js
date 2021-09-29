@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { editNote } from "../../store/actions/board";
 import styles from "./ModalEditNote.module.scss";
+import ButtonDeleteTag from "../../components/ButtonDeleteTag/ButtonDeleteTag";
 
 const CssTextField = styled(TextField)({
   "&": {
@@ -103,9 +104,8 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
               editNoteTags.map((tag, index) => (
                 <li className={styles.note__tag} key={tag + index}>
                   {tag}
-                  <button
-                    className={styles["note__tag--delete"]}
-                    onClick={() => deleteTag(tag)}
+                  <ButtonDeleteTag
+                    deleteTag={() => deleteTag(tag)}
                   />
                 </li>
               ))
