@@ -14,7 +14,7 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <footer className={styles.footer}>
+    <footer className={classes.footer}>
       <p>2021, made by Alex Sukhobski</p>
     </footer>
   );
