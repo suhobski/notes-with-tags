@@ -11,7 +11,6 @@ const CreateNote = styled(Card)({
   color: "#5a5a65",
   background: "#ffffff",
   borderRadius: "0.75rem",
-  zIndex: 40,
 });
 
 const TextInputWrapper = styled(Card)({
