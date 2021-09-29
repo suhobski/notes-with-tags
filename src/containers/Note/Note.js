@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Card, makeStyles } from "@material-ui/core";
 import { connect } from "react-redux";
-import { deleteNote } from "../store/actions/board";
-import ModalEditNote from "./ModalEditNote";
+import { deleteNote } from "../../store/actions/board";
+import ModalEditNote from "../ModalEditNote/ModalEditNote";
 
 const useStyles = makeStyles({
   note: {
@@ -24,6 +24,7 @@ const useStyles = makeStyles({
   },
   "note__tag-list": {
     margin: 0,
+    padding: 0,
   },
   note__tag: {
     display: "inline-block",
