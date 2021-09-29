@@ -23,7 +23,8 @@ export default function boardReducer(state = initialState, action) {
     case ON_EDIT_NOTE:
       const newNotes = editNote(state, action.note);
       return {
-        notes: newNotes,
+        ...state,
+        notes: [...newNotes],
       };
     default:
       return state;
