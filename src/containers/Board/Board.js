@@ -1,15 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card } from "@material-ui/core";
+import { Button, Card, makeStyles, styled } from "@material-ui/core";
 import { connect } from "react-redux";
-import Filter from "../Filter/Filter";
-import Note from "../Note";
-import CreateNoteForm from "../CreateNoteForm";
-import styles from "./Board.module.scss";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Filter from "../../Filter/Filter";
+import Note from "../../Note/Note";
+import ModalCreateNote from "../../ModalCreateNote/ModalCreateNote";
+
+const BoardWrap = styled(Card)({
+  position: "relative",
+  padding: "1rem 0.5rem",
+  borderRadius: 12,
+  background: "#ffffff",
+  zIndex: 0,
+});
+
+const NotesWrapper = styled(Card)({
+  padding: "0.5rem",
+  background: "#f8f8f8",
+  color: "#5a5a65",
+});
+
+const ButtonAddNote = styled(Button)({
+  position: "fixed",
+  bottom: 16,
+  right: 16,
+  padding: 6,
+  width: 40,
+  textAlign: "center",
+  fontSize: "1.75rem",
+  borderRadius: "50%",
+  zIndex: 30,
+  transition: "all 0.3s ease-out",
+});
+
+const useStyles = makeStyles({
+  board__title: {
+    marginBottom: "0.5rem",
+    color: "#5a5a65",
+  },
+});
 
 const Board = ({ filterTag, notes }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [buttonRotate, setButtonRotate] = useState(0);
-  const [boardNotes, setBoardNotes] = useState(notes);
+  const [boardNotes, setBoardNotes] = useState([]);
+  const matches = useMediaQuery("(max-width:600px)");
+  const classes = useStyles();
 
   const handleModalClick = (e) => {
     if (e.target.classList.contains("MuiCard-root")) {
@@ -38,10 +74,10 @@ const Board = ({ filterTag, notes }) => {
   }, [notes, filterTag]);
 
   return (
-    <Card className={styles.board} style={{ borderRadius: 12 }}>
-      <h2 className={styles.board__title}>Board</h2>
+    <BoardWrap>
+      <h2 className={classes.board__title}>Board</h2>
       <Filter />
-      <Card className={styles.notesWrapper}>
+      <NotesWrapper>
         <h3>Notes</h3>
         {boardNotes.length === 0 ? (
           <p>...</p>
@@ -50,21 +86,24 @@ const Board = ({ filterTag, notes }) => {
             <Note note={note} key={note.noteText + index} />
           ))
         )}
-      </Card>
-      <Button
-        className={styles.button}
+      </NotesWrapper>
+      <ButtonAddNote
         variant="contained"
         onClick={handleButton}
-        style={{ transform: `rotate(${buttonRotate})` }}
+        style={{
+          transform: `rotate(${buttonRotate})`,
+          display: matches ? "block" : "none",
+        }}
       >
         +
-      </Button>
+      </ButtonAddNote>
       {isOpenModal ? (
-        <Card className={styles.ModalCreateNote} onClick={handleModalClick}>
-          <CreateNoteForm closeModal={() => closeModal()} />
-        </Card>
+        <ModalCreateNote
+          handleModalClick={(e) => handleModalClick(e)}
+          closeModal={() => closeModal()}
+        />
       ) : null}
-    </Card>
+    </BoardWrap>
   );
 };
 
