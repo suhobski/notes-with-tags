@@ -44,7 +44,7 @@ const Board = ({ filterTag, notes }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [buttonRotate, setButtonRotate] = useState(0);
   const [boardNotes, setBoardNotes] = useState([]);
-  const matches = useMediaQuery("(max-width:600px)");
+  const matches = useMediaQuery("(max-width:599px)");
   const classes = useStyles();
 
   const handleModalClick = (e) => {
