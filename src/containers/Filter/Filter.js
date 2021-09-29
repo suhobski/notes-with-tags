@@ -3,7 +3,13 @@ import { Card, TextField } from "@material-ui/core";
 import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { setTag } from "../../store/actions/filter";
-import styles from "./Filter.module.scss"
+
+const FilterWrap = styled(Card)({
+  marginBottom: "0.5rem",
+  padding: "0.5rem",
+  background: "#f8f8f8",
+  color: "#5a5a65",
+});
 
 const CssTextField = styled(TextField)({
   zIndex: 0,
@@ -27,7 +33,7 @@ const Filter = ({ onSetTag }) => {
   };
 
   return (
-    <Card className={styles.filter}>
+    <FilterWrap>
       <h3>Filter</h3>
       <CssTextField
         id="note"
@@ -38,7 +44,7 @@ const Filter = ({ onSetTag }) => {
         value={tag}
         onChange={handleChange}
       />
-    </Card>
+    </FilterWrap>
   );
 };
 
