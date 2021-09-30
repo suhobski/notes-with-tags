@@ -1,22 +1,18 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { styled } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  footer: {
+const FooterWrap = styled("footer")({
     fontSize: "0.75rem",
     textAlign: "center",
     color: "#ffffff",
     background: "transparent",
-  }
 });  
 
 const Footer = () => {
-  const classes = useStyles();
-
   return (
-    <footer className={classes.footer}>
+    <FooterWrap>
       <p>2021, made by Alex Sukhobski</p>
-    </footer>
+    </FooterWrap>
   );
 };
 

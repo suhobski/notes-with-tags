@@ -13,6 +13,29 @@ const CreateNote = styled(Card)({
   borderRadius: "0.75rem",
 });
 
+const ListTags = styled("ul")({
+  width: "100%",
+  margin: 0,
+  marginBottom: "0.5rem",
+  padding: "0.5rem",
+  paddingBottom: 0,
+  minHeight: 40,
+  border: "none",
+  borderRadius: 4,
+  background: "#f8f8f8",
+  color: "#ffffff",
+});
+
+const Tag = styled("li")({
+  display: "inline-block",
+  margin: "0 0.5rem 0.5rem 0",
+  padding: "0 4px",
+  listStyleType: "none",
+  borderRadius: 4,
+  background: "#5a5a65",
+  color: "#ffffff",
+});
+
 const TextInputWrapper = styled(Card)({
   marginBottom: "0.5rem",
   padding: "0.5rem",
@@ -31,35 +54,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const useStyles = makeStyles({
-  title: {
-    marginBottom: "0.5rem",
-  },
-  tag__list: {
-    width: "100%",
-    margin: 0,
-    marginBottom: "0.5rem",
-    padding: "0.5rem",
-    paddingBottom: 0,
-    minHeight: 40,
-    border: "none",
-    borderRadius: 4,
-    background: "#f8f8f8",
-    color: "#ffffff",
-  },
-  note__tag: {
-    display: "inline-block",
-    margin: "0 0.5rem 0.5rem 0",
-    padding: "0 4px",
-    listStyleType: "none",
-    borderRadius: 4,
-    background: "#5a5a65",
-    color: "#ffffff",
-  },
-});
-
 const CreateNoteForm = ({ closeModal, onAddNote }) => {
-  const classes = useStyles();
   const [note, setNote] = useState("");
   const [tags, setTags] = useState(null);
 
@@ -89,12 +84,11 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
 
   return (
     <CreateNote>
-      <h2 className={classes.title}>Create note</h2>
+      <h2 style={{ marginBottom: "0.5rem" }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <h4>Text:</h4>
         <TextInputWrapper>
           <CssTextField
-            className={classes.textInput}
             id="note"
             name="note"
             variant="outlined"
@@ -108,14 +102,14 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
           />
         </TextInputWrapper>
         <h4>Tags:</h4>
-        <ul className={classes.tag__list}>
+        <ListTags>
           {tags &&
             tags.map((tag, index) => (
-              <li className={classes.note__tag} key={tag + index}>
+              <Tag key={tag + index}>
                 {tag}
-              </li>
+              </Tag>
             ))}
-        </ul>
+        </ListTags>
         <Button type="submit" variant="contained" fullWidth>
           Ok
         </Button>

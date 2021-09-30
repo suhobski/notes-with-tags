@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, makeStyles, styled } from "@material-ui/core";
+import { Button, Card, styled } from "@material-ui/core";
 import { connect } from "react-redux";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Filter from "../Filter/Filter";
@@ -33,11 +33,9 @@ const ButtonAddNote = styled(Button)({
   transition: "all 0.3s ease-out",
 });
 
-const useStyles = makeStyles({
-  board__title: {
-    marginBottom: "0.5rem",
-    color: "#5a5a65",
-  },
+const BoardTitle = styled("h2")({
+  marginBottom: "0.5rem",
+  color: "#5a5a65",
 });
 
 const Board = ({ filterTag, notes }) => {
@@ -45,8 +43,6 @@ const Board = ({ filterTag, notes }) => {
   const [buttonRotate, setButtonRotate] = useState(0);
   const [boardNotes, setBoardNotes] = useState([]);
   const matches = useMediaQuery("(max-width:599px)");
-  const classes = useStyles();
-
   const handleModalClick = (e) => {
     if (e.target.classList.contains("MuiCard-root")) {
       setIsOpenModal(false);
@@ -75,7 +71,7 @@ const Board = ({ filterTag, notes }) => {
 
   return (
     <BoardWrap>
-      <h2 className={classes.board__title}>Board</h2>
+      <BoardTitle>Board</BoardTitle>
       <Filter />
       <NotesWrapper>
         <h3>Notes</h3>

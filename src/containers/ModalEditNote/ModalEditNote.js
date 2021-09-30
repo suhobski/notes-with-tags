@@ -1,5 +1,5 @@
 import React, { useState, dangerouslySetInnerHTML } from "react";
-import { Button, Card, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Button, Card, TextField, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import { Box } from '@mui/material';
 import { styled } from "@mui/material/styles";
@@ -20,6 +20,45 @@ const ModalEditNoteWrap = styled(Box)({
   padding: "0.5rem",
   background: "rgba(0, 0, 0, 0.5)",
   zIndex: 40,
+});
+
+const NoteWrap = styled(Card)({
+  marginBottom: "0.5rem",
+  padding: "1rem",
+  color: "#5a5a65",
+});
+
+const NoteTitle = styled("h2")({
+  marginBottom: "0.5rem",
+})
+
+const NoteDate = styled("p")({
+  fontSize: "0.75rem",
+  borderRadius: 4,
+  marginBottom: "0.5rem",
+})
+
+const NoteList = styled("ul")({
+  display: "inline-block",
+  width: "100%",
+  margin: 0,
+  padding: "0.75rem 0.5rem 0",
+  minHeight: 48,
+  border: "none",
+  borderRadius: 4,
+  background: "#f8f8f8",
+  color: "#ffffff",
+})
+
+const NoteTag = styled("li")({
+  position: "relative",
+  display: "inline-block",
+  margin: "0 1rem 0.75rem 0",
+  padding: "0 0.25rem",
+  listStyleType: "none",
+  borderRadius: 4,
+  background: "#5a5a65",
+  color: "#ffffff",
 });
 
 const CssTextField = styled(TextField)({
@@ -57,12 +96,10 @@ const TagInputWrapper = styled(Box)({
   gridTemplateColumns: "auto 100px",
 });
 
-const useStyles = makeStyles({
-  footer: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: 8,
-  },
+const ModalFooter = styled('footer')({
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: 8,
 });
 
 const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
@@ -71,7 +108,6 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
   );
   const [editNoteTags, setEditNoteTags] = useState(noteTags);
   const [addTag, setAddTag] = useState("");
-  const classes = useStyles();
   const date = `${noteDate
     .toLocaleTimeString()
     .substring(0, 5)} ${noteDate.toLocaleDateString()}`;
@@ -80,7 +116,7 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
     /#[a-zа-я0-9]+/g, 
     `<span style="display:inline-block;background-color:#5bd497;padding:0 4px;border-radius:4px">$&</span>`
   );
-  
+
   const handleChangeTag = (e) => {
     setAddTag(e.target.value);
   };
@@ -123,14 +159,13 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
       component="form"
       noValidate
     >
-      <Card className={styles.note}>
-        <h2 className={styles.note__title}>Edit note</h2>
-        <p className={styles.note__date}>{date}</p>
+      <NoteWrap>
+        <NoteTitle className={styles.note__title}>Edit note</NoteTitle>
+        <NoteDate className={styles.note__date}>{date}</NoteDate>
         <Box>
           <h4>Text:</h4>
-          <Typography gutterBottom dangerouslySetInnerHTML={{__html: textWithTags}} />
+          <Typography style={{ margin: "8px 0"}} gutterBottom dangerouslySetInnerHTML={{__html: textWithTags}} />
           <CssTextField
-            className={styles.modalEditNote__textInput}
             id="editNote"
             name="editNote"
             variant="outlined"
@@ -143,25 +178,24 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
         </Box>
         <Box>
           <h4>Tags:</h4>
-          <ul className={styles["note__tag-list"]}>
+          <NoteList>
             {editNoteTags.length > 0 ? (
               editNoteTags.map((tag, index) => (
-                <li className={styles.note__tag} key={tag + index}>
+                <NoteTag className={styles.note__tag} key={tag + index}>
                   {tag}
                   <ButtonDeleteTag
                     deleteTag={() => deleteTag(tag)}
                   />
-                </li>
+                </NoteTag>
               ))
             ) : (
               <p>...</p>
             )}
-          </ul>
+          </NoteList>
           <TagInputWrapper>
             <CssTextField
               value={addTag}
               onChange={handleChangeTag}
-              className={styles.modalEditNote__textInput}
               name="addTag"
               variant="outlined"
               label="Write a tag..."
@@ -175,15 +209,15 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
             </ButtonAddTag>
           </TagInputWrapper>
         </Box>
-        <footer className={classes.footer}>
+        <ModalFooter>
           <Button type="submit" variant="contained" fullWidth>
             Ok
           </Button>
           <Button onClick={() => closeModal()} fullWidth variant="contained">
             Cancel
           </Button>
-        </footer>
-      </Card>
+        </ModalFooter>
+      </NoteWrap>
     </ModalEditNoteWrap>
   );
 };
