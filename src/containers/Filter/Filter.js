@@ -20,6 +20,7 @@ const FilterWrap = styled(Box)({
 const FilterInput = styled("input")({
   display: "inline-block",
   width: "100%",
+  paddingLeft: 8,
   border: "none",
   borderBottom: "1px solid #5a5a65",
   "&:focus": {
