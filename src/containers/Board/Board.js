@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, styled } from "@material-ui/core";
+import { Button, Card, CardHeader, styled } from "@material-ui/core";
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 import { connect } from "react-redux";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Filter from "../Filter/Filter";
 import Note from "../Note/Note";
 import ModalCreateNote from "../ModalCreateNote/ModalCreateNote";
+import { Box } from "@mui/system";
 
 const BoardWrap = styled(Card)({
   position: "relative",
@@ -12,6 +15,19 @@ const BoardWrap = styled(Card)({
   borderRadius: 12,
   background: "#ffffff",
   zIndex: 0,
+});
+
+const BoardHeader = styled(Box)({
+  height: 48,
+  display: "grid",
+  gridTemplateColumns: "1fr minmax(70px, 270px)",
+  justifyContent: "space-between",
+});
+
+const SearchTagButton = styled(IconButton)({
+  position: "absolute",
+  top: 10,
+  right: 8,
 });
 
 const NotesWrapper = styled(Card)({
@@ -42,7 +58,8 @@ const Board = ({ filterTag, notes }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [buttonRotate, setButtonRotate] = useState(0);
   const [boardNotes, setBoardNotes] = useState([]);
-  const matches = useMediaQuery("(max-width:599px)");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const matches = useMediaQuery("(min-width:600px)");
   const handleModalClick = (e) => {
     if (e.target.classList.contains("MuiCard-root")) {
       setIsOpenModal(false);
@@ -71,8 +88,21 @@ const Board = ({ filterTag, notes }) => {
 
   return (
     <BoardWrap>
-      <BoardTitle>Board</BoardTitle>
-      <Filter />
+      <BoardHeader>
+        <BoardTitle>Board</BoardTitle>
+        {
+          !isFilterOpen 
+          && 
+          <SearchTagButton 
+            style={{ position: "absolute" }} 
+            size="large"
+            onClick={() => setIsFilterOpen(true)}
+          >
+            <SearchIcon />
+          </SearchTagButton>
+        }
+        {isFilterOpen && <Filter />}
+      </BoardHeader>
       <NotesWrapper>
         <h3>Notes</h3>
         {boardNotes.length === 0 ? (
@@ -88,7 +118,7 @@ const Board = ({ filterTag, notes }) => {
         onClick={handleButton}
         style={{
           transform: `rotate(${buttonRotate})`,
-          display: matches ? "block" : "none",
+          display: matches ? "none" : "block",
         }}
       >
         +

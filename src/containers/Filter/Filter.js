@@ -1,26 +1,39 @@
 import React, { useState } from "react";
-import { Card, TextField } from "@material-ui/core";
+import { Input } from "@material-ui/core";
 import { styled } from "@mui/material/styles";
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 import { connect } from "react-redux";
 import { setTag } from "../../store/actions/filter";
+import { Box } from "@mui/system";
 
-const FilterWrap = styled(Card)({
+const FilterWrap = styled(Box)({
+  position: "relative",
+  top: -2,
+  display: "flex",
+  justifyContent: "right",
   marginBottom: "0.5rem",
   padding: "0.5rem",
-  background: "#f8f8f8",
   color: "#5a5a65",
 });
 
-const CssTextField = styled(TextField)({
-  zIndex: 0,
-  "& label.Mui-focused": {
-    color: "#5A5A65",
-  },
-  "& .MuiOutlinedInput-root": {
-    "&.Mui-focused fieldset": {
-      borderColor: "#5A5A65",
-    },
-  },
+const FilterInput = styled("input")({
+  display: "inline-block",
+  width: "100%",
+  border: "none",
+  borderBottom: "1px solid #5a5a65",
+  "&:focus": {
+    border: "none",
+    outline: "none",
+    borderBottom: "2px solid #5a5a65",
+  }
+});
+
+const CloseFilterButton = styled(IconButton)({
+  position: "absolute",
+  top: -4,
+  right: 2,
+  display: "inlone-block",
 });
 
 const Filter = ({ onSetTag }) => {
@@ -34,16 +47,18 @@ const Filter = ({ onSetTag }) => {
 
   return (
     <FilterWrap>
-      <h3>Filter</h3>
-      <CssTextField
-        id="note"
-        name="note"
-        variant="outlined"
-        label="write a tag..."
-        fullWidth
+      <FilterInput
+        type="text"
+        autoFocus 
         value={tag}
         onChange={handleChange}
-      />
+      />   
+      <CloseFilterButton 
+        size="large"
+        // onClick={() => setIsFilterOpen(false)}
+      >
+        <CloseIcon />
+      </CloseFilterButton>     
     </FilterWrap>
   );
 };

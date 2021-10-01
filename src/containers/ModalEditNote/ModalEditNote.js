@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Box } from '@mui/material';
 import { styled } from "@mui/material/styles";
 import { editNote } from "../../store/actions/board";
-import styles from "./ModalEditNote.module.scss";
 import ButtonDeleteTag from "../../components/ButtonDeleteTag/ButtonDeleteTag";
 
 const ModalEditNoteWrap = styled(Box)({
@@ -14,7 +13,7 @@ const ModalEditNoteWrap = styled(Box)({
   bottom: 0,
   left: 0,
   display: "grid",
-  gridTemplateColumns: "minmax(264px, 400px)",
+  gridTemplateColumns: "minmax(264px, 500px)",
   alignItems: "center",
   justifyContent: "center",
   padding: "0.5rem",
@@ -160,8 +159,8 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
       noValidate
     >
       <NoteWrap>
-        <NoteTitle className={styles.note__title}>Edit note</NoteTitle>
-        <NoteDate className={styles.note__date}>{date}</NoteDate>
+        <NoteTitle>Edit note</NoteTitle>
+        <NoteDate>{date}</NoteDate>
         <Box>
           <h4>Text:</h4>
           <Typography style={{ margin: "8px 0"}} gutterBottom dangerouslySetInnerHTML={{__html: textWithTags}} />
@@ -181,7 +180,7 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
           <NoteList>
             {editNoteTags.length > 0 ? (
               editNoteTags.map((tag, index) => (
-                <NoteTag className={styles.note__tag} key={tag + index}>
+                <NoteTag key={tag + index}>
                   {tag}
                   <ButtonDeleteTag
                     deleteTag={() => deleteTag(tag)}
