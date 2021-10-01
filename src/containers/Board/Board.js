@@ -101,7 +101,7 @@ const Board = ({ filterTag, notes }) => {
             <SearchIcon />
           </SearchTagButton>
         }
-        {isFilterOpen && <Filter />}
+        {isFilterOpen && <Filter closeFilter={() => setIsFilterOpen(false)} />}
       </BoardHeader>
       <NotesWrapper>
         <h3>Notes</h3>

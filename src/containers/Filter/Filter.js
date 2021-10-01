@@ -37,7 +37,7 @@ const CloseFilterButton = styled(IconButton)({
   display: "inlone-block",
 });
 
-const Filter = ({ onSetTag }) => {
+const Filter = ({ onSetTag, closeFilter }) => {
   const [tag, setTag] = useState("");
 
   const handleChange = (e) => {
@@ -45,6 +45,11 @@ const Filter = ({ onSetTag }) => {
     setTag(tagText);
     onSetTag(`#${tagText.trim()}`);
   };
+
+  const handleCloseFilter = () => {
+    onSetTag("");
+    closeFilter();
+  }
 
   return (
     <FilterWrap>
@@ -56,7 +61,7 @@ const Filter = ({ onSetTag }) => {
       />   
       <CloseFilterButton 
         size="large"
-        // onClick={() => setIsFilterOpen(false)}
+        onClick={handleCloseFilter}
       >
         <CloseIcon />
       </CloseFilterButton>     
