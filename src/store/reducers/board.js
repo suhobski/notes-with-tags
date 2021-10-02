@@ -2,11 +2,18 @@ import {
   ON_ADD_NOTE,
   ON_DELETE_NOTE,
   ON_EDIT_NOTE,
-} from "../actions/actionTypes";
+} from '../actions/actionTypes';
 
 const initialState = {
   notes: [],
 };
+
+function editNote(state, newNote) {
+  const { notes } = state;
+  const noteIndex = notes.findIndex((note) => note.noteId === newNote.noteId);
+  notes[noteIndex] = newNote;
+  return notes;
+}
 
 export default function boardReducer(state = initialState, action) {
   switch (action.type) {
@@ -21,19 +28,11 @@ export default function boardReducer(state = initialState, action) {
         notes: state.notes.filter((note) => note.noteId !== action.id),
       };
     case ON_EDIT_NOTE:
-      const newNotes = editNote(state, action.note);
       return {
         ...state,
-        notes: [...newNotes],
+        notes: [...editNote(state, action.note)],
       };
     default:
       return state;
   }
-}
-
-function editNote(state, newNote) {
-  const { notes } = state;
-  const noteIndex = notes.findIndex((note) => note.noteId === newNote.noteId);
-  notes[noteIndex] = newNote;
-  return notes;
 }

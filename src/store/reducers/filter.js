@@ -1,7 +1,7 @@
-import { ON_SET_TAG } from "../actions/actionTypes";
+import { ON_SET_TAG } from '../actions/actionTypes';
 
 const initialState = {
-  tag: "",
+  tag: '',
 };
 
 export default function filterReducer(state = initialState, action) {

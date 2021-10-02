@@ -1,6 +1,6 @@
-import { ON_SET_TAG } from "./actionTypes";
+import { ON_SET_TAG } from './actionTypes';
 
-export function setTag(tag) {
+export default function setTag(tag) {
   return {
     type: ON_SET_TAG,
     tag,

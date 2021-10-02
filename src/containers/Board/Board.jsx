@@ -1,57 +1,57 @@
-import React, { useEffect, useState } from "react";
-import { Button, Card, CardHeader, styled } from "@material-ui/core";
+import React, { useEffect, useState } from 'react';
+import { Button, Card, styled } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { connect } from "react-redux";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Filter from "../Filter/Filter";
-import Note from "../Note/Note";
-import ModalCreateNote from "../ModalCreateNote/ModalCreateNote";
-import { Box } from "@mui/system";
+import { connect } from 'react-redux';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box } from '@mui/system';
+import Filter from '../Filter/Filter';
+import Note from '../Note/Note';
+import ModalCreateNote from '../ModalCreateNote/ModalCreateNote';
 
 const BoardWrap = styled(Card)({
-  position: "relative",
-  padding: "1rem 0.5rem",
+  position: 'relative',
+  padding: '1rem 0.5rem',
   borderRadius: 12,
-  background: "#ffffff",
+  background: '#ffffff',
   zIndex: 0,
 });
 
 const BoardHeader = styled(Box)({
   height: 48,
-  display: "grid",
-  gridTemplateColumns: "1fr minmax(70px, 270px)",
-  justifyContent: "space-between",
+  display: 'grid',
+  gridTemplateColumns: '1fr minmax(70px, 270px)',
+  justifyContent: 'space-between',
 });
 
 const SearchTagButton = styled(IconButton)({
-  position: "absolute",
+  position: 'absolute',
   top: 10,
   right: 8,
 });
 
 const NotesWrapper = styled(Card)({
-  padding: "0.5rem",
-  background: "#f8f8f8",
-  color: "#5a5a65",
+  padding: '0.5rem',
+  background: '#f8f8f8',
+  color: '#5a5a65',
 });
 
 const ButtonAddNote = styled(Button)({
-  position: "fixed",
+  position: 'fixed',
   bottom: 16,
   right: 16,
   padding: 6,
   width: 40,
-  textAlign: "center",
-  fontSize: "1.75rem",
-  borderRadius: "50%",
+  textAlign: 'center',
+  fontSize: '1.75rem',
+  borderRadius: '50%',
   zIndex: 30,
-  transition: "all 0.3s ease-out",
+  transition: 'all 0.3s ease-out',
 });
 
-const BoardTitle = styled("h2")({
-  marginBottom: "0.5rem",
-  color: "#5a5a65",
+const BoardTitle = styled('h2')({
+  marginBottom: '0.5rem',
+  color: '#5a5a65',
 });
 
 const Board = ({ filterTag, notes }) => {
@@ -59,17 +59,17 @@ const Board = ({ filterTag, notes }) => {
   const [buttonRotate, setButtonRotate] = useState(0);
   const [boardNotes, setBoardNotes] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery('(min-width:600px)');
   const handleModalClick = (e) => {
-    if (e.target.classList.contains("MuiCard-root")) {
+    if (e.target.classList.contains('MuiCard-root')) {
       setIsOpenModal(false);
       setButtonRotate(0);
     }
   };
 
   const handleButton = () => {
-    if (buttonRotate === 0) setButtonRotate("45deg");
-    if (buttonRotate === "45deg") setButtonRotate(0);
+    if (buttonRotate === 0) setButtonRotate('45deg');
+    if (buttonRotate === '45deg') setButtonRotate(0);
     setIsOpenModal(!isOpenModal);
   };
 
@@ -90,17 +90,15 @@ const Board = ({ filterTag, notes }) => {
     <BoardWrap>
       <BoardHeader>
         <BoardTitle>Board</BoardTitle>
-        {
-          !isFilterOpen 
-          && 
-          <SearchTagButton 
-            style={{ position: "absolute" }} 
+        {!isFilterOpen && (
+          <SearchTagButton
+            style={{ position: 'absolute' }}
             size="large"
             onClick={() => setIsFilterOpen(true)}
           >
             <SearchIcon />
           </SearchTagButton>
-        }
+        )}
         {isFilterOpen && <Filter closeFilter={() => setIsFilterOpen(false)} />}
       </BoardHeader>
       <NotesWrapper>
@@ -108,9 +106,7 @@ const Board = ({ filterTag, notes }) => {
         {boardNotes.length === 0 ? (
           <p>...</p>
         ) : (
-          boardNotes.map((note, index) => (
-            <Note note={note} key={note.noteText + index} />
-          ))
+          boardNotes.map((note) => <Note note={note} key={note.noteId} />)
         )}
       </NotesWrapper>
       <ButtonAddNote
@@ -118,7 +114,7 @@ const Board = ({ filterTag, notes }) => {
         onClick={handleButton}
         style={{
           transform: `rotate(${buttonRotate})`,
-          display: matches ? "none" : "block",
+          display: matches ? 'none' : 'block',
         }}
       >
         +

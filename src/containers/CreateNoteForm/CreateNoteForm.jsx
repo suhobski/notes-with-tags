@@ -1,61 +1,61 @@
-import React, { useState } from "react";
-import { Button, Card, TextField } from "@material-ui/core";
-import { styled } from "@mui/material/styles";
-import { Box } from "@mui/system";
-import { connect } from "react-redux";
-import uid from "uid2";
-import { addNote } from "../../store/actions/board";
+import React, { useState } from 'react';
+import { Button, Card, TextField } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
+import { Box } from '@mui/system';
+import { connect } from 'react-redux';
+import uid from 'uid2';
+import { addNote } from '../../store/actions/board';
 
 const CreateNote = styled(Card)({
-  padding: "1rem 0.5rem",
-  color: "#5a5a65",
-  background: "#ffffff",
-  borderRadius: "0.75rem",
+  padding: '1rem 0.5rem',
+  color: '#5a5a65',
+  background: '#ffffff',
+  borderRadius: '0.75rem',
 });
 
-const ListTags = styled("ul")({
-  width: "100%",
+const ListTags = styled('ul')({
+  width: '100%',
   margin: 0,
-  marginBottom: "0.5rem",
-  padding: "0.5rem",
+  marginBottom: '0.5rem',
+  padding: '0.5rem',
   paddingBottom: 0,
   minHeight: 40,
-  border: "none",
+  border: 'none',
   borderRadius: 4,
-  background: "#f8f8f8",
-  color: "#ffffff",
+  background: '#f8f8f8',
+  color: '#ffffff',
 });
 
-const Tag = styled("li")({
-  display: "inline-block",
-  margin: "0 0.5rem 0.5rem 0",
-  padding: "0 4px",
-  listStyleType: "none",
+const Tag = styled('li')({
+  display: 'inline-block',
+  margin: '0 0.5rem 0.5rem 0',
+  padding: '0 4px',
+  listStyleType: 'none',
   borderRadius: 4,
-  background: "#5a5a65",
-  color: "#ffffff",
+  background: '#5a5a65',
+  color: '#ffffff',
 });
 
 const TextInputWrapper = styled(Card)({
-  marginBottom: "0.5rem",
-  padding: "0.5rem",
-  background: "#f8f8f8",
-  color: "#5a5a65",
+  marginBottom: '0.5rem',
+  padding: '0.5rem',
+  background: '#f8f8f8',
+  color: '#5a5a65',
 });
 
 const CssTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "#5A5A65",
+  '& label.Mui-focused': {
+    color: '#5A5A65',
   },
-  "& .MuiOutlinedInput-root": {
-    "&.Mui-focused fieldset": {
-      borderColor: "#5A5A65",
+  '& .MuiOutlinedInput-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#5A5A65',
     },
   },
 });
 
 const CreateNoteForm = ({ closeModal, onAddNote }) => {
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState('');
   const [tags, setTags] = useState(null);
 
   const handleChange = (e) => {
@@ -68,15 +68,15 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if (data.get("note").length > 0) {
+    if (data.get('note').length > 0) {
       // eslint-disable-next-line no-console
       onAddNote({
         noteId: uid(10),
-        noteText: data.get("note"),
+        noteText: data.get('note'),
         noteTags: tags,
         noteDate: new Date(),
       });
-      setNote("");
+      setNote('');
       setTags(null);
       if (closeModal) closeModal();
     }
@@ -84,7 +84,7 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
 
   return (
     <CreateNote>
-      <h2 style={{ marginBottom: "0.5rem" }}>Create note</h2>
+      <h2 style={{ marginBottom: '0.5rem' }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <h4>Text:</h4>
         <TextInputWrapper>
@@ -103,12 +103,7 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
         </TextInputWrapper>
         <h4>Tags:</h4>
         <ListTags>
-          {tags &&
-            tags.map((tag, index) => (
-              <Tag key={tag + index}>
-                {tag}
-              </Tag>
-            ))}
+          {tags && tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
         </ListTags>
         <Button type="submit" variant="contained" fullWidth>
           Ok
