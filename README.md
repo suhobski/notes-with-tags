@@ -1,7 +1,7 @@
 # Notes with tags
 
-https://suhobski.github.io/notes-with-tags/
-https://admiring-lovelace-79415d.netlify.app/
+GitHub Pages: https://suhobski.github.io/notes-with-tags/
+Netlify: https://admiring-lovelace-79415d.netlify.app/
 
 Разработать одностраничное приложение на Angular 2+/React/etc: текстовый редактор заметок с тегами.
 Действия:
