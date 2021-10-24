@@ -60,12 +60,6 @@ const Board = ({ filterTag, notes }) => {
   const [boardNotes, setBoardNotes] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const matches = useMediaQuery('(min-width:600px)');
-  const handleModalClick = (e) => {
-    if (e.target.classList.contains('MuiCard-root')) {
-      setIsOpenModal(false);
-      setButtonRotate(0);
-    }
-  };
 
   const handleButton = () => {
     if (buttonRotate === 0) setButtonRotate('45deg');
@@ -119,12 +113,7 @@ const Board = ({ filterTag, notes }) => {
       >
         +
       </ButtonAddNote>
-      {isOpenModal ? (
-        <ModalCreateNote
-          handleModalClick={(e) => handleModalClick(e)}
-          closeModal={() => closeModal()}
-        />
-      ) : null}
+      {isOpenModal ? <ModalCreateNote closeModal={closeModal} /> : null}
     </BoardWrap>
   );
 };

@@ -78,12 +78,12 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
       });
       setNote('');
       setTags(null);
-      if (closeModal) closeModal();
+      closeModal();
     }
   };
 
   return (
-    <CreateNote>
+    <CreateNote onClick={(e) => e.stopPropagation()}>
       <h2 style={{ marginBottom: '0.5rem' }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <h4>Text:</h4>

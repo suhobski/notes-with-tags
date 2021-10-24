@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, styled } from '@material-ui/core';
 import CreateNoteForm from '../CreateNoteForm/CreateNoteForm';
 
-const ModalCreate = styled(Card)({
+const Modal = styled(Card)({
   position: 'fixed',
   top: 0,
   right: 0,
@@ -16,10 +16,10 @@ const ModalCreate = styled(Card)({
   padding: '0 1rem',
 });
 
-const ModalCreateNote = ({ handleModalClick, closeModal }) => (
-  <ModalCreate onClick={(e) => handleModalClick(e)}>
-    <CreateNoteForm closeModal={() => closeModal()} />
-  </ModalCreate>
+const ModalCreateNote = ({ closeModal }) => (
+  <Modal onClick={closeModal}>
+    <CreateNoteForm closeModal={closeModal} />
+  </Modal>
 );
 
 export default ModalCreateNote;

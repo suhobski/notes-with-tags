@@ -153,8 +153,13 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
   };
 
   return (
-    <ModalEditNoteWrap onSubmit={handleSubmit} component="form" noValidate>
-      <NoteWrap>
+    <ModalEditNoteWrap
+      onSubmit={handleSubmit}
+      onClick={closeModal}
+      component="form"
+      noValidate
+    >
+      <NoteWrap onClick={(e) => e.stopPropagation()}>
         <NoteTitle>Edit note</NoteTitle>
         <NoteDate>{date}</NoteDate>
         <Box>
@@ -210,7 +215,7 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
           <Button type="submit" variant="contained" fullWidth>
             Ok
           </Button>
-          <Button onClick={() => closeModal()} fullWidth variant="contained">
+          <Button onClick={closeModal} fullWidth variant="contained">
             Cancel
           </Button>
         </ModalFooter>
