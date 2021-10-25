@@ -1,6 +1,6 @@
 import { Box, Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
-import TextInput from '../../components/UI/TextInput';
+import TextInput from '../../../components/UI/TextInput/TextInput';
 
 export default function EditText({ noteText, newText, setNewText }) {
   const textWithTags = useMemo(() =>

@@ -1,7 +1,7 @@
 import { Box, styled, Button } from '@material-ui/core';
 import React from 'react';
-import TextInput from '../../components/UI/TextInput';
-import ButtonDeleteTag from '../../components/UI/ButtonDeleteTag';
+import TextInput from '../../../components/UI/TextInput/TextInput';
+import ButtonDeleteTag from '../../../components/UI/ButtonDeleteTag/ButtonDeleteTag';
 
 const NoteList = styled('ul')({
   display: 'inline-block',
