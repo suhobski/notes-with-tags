@@ -1,30 +1,7 @@
 import { Box, styled, Button } from '@material-ui/core';
 import React from 'react';
 import TextInput from '../../../components/UI/TextInput/TextInput';
-import ButtonDeleteTag from '../../../components/UI/ButtonDeleteTag/ButtonDeleteTag';
-
-const NoteList = styled('ul')({
-  display: 'inline-block',
-  width: '100%',
-  margin: 0,
-  padding: '0.75rem 0.5rem 0',
-  minHeight: 48,
-  border: 'none',
-  borderRadius: 4,
-  background: '#f8f8f8',
-  color: '#ffffff',
-});
-
-const NoteTag = styled('li')({
-  position: 'relative',
-  display: 'inline-block',
-  margin: '0 1rem 0.75rem 0',
-  padding: '0 0.25rem',
-  listStyleType: 'none',
-  borderRadius: 4,
-  background: '#5a5a65',
-  color: '#ffffff',
-});
+import TagList from './TagList/TagList';
 
 const ButtonAddTag = styled(Button)({
   display: 'inline-block',
@@ -71,18 +48,7 @@ export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
   return (
     <Box>
       <h4>Tags:</h4>
-      <NoteList>
-        {newTags.length ? (
-          newTags.map((tag) => (
-            <NoteTag key={tag}>
-              {tag}
-              <ButtonDeleteTag deleteTag={() => deleteTag(tag)} />
-            </NoteTag>
-          ))
-        ) : (
-          <p>...</p>
-        )}
-      </NoteList>
+      <TagList newTags={newTags} deleteTag={deleteTag} />
       <TagInputWrapper>
         <TextInput
           value={addTag}
