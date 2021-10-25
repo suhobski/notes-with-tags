@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Card } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { Box } from '@mui/material';
@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import { editNote } from '../../store/actions/board';
 import EditText from './EditText/EditText';
 import EditTags from './EditTags/EditTags';
+import ModalHeader from './ModalHeader/ModalHeader';
 
 const ModalEditNoteWrap = styled(Box)({
   position: 'fixed',
@@ -22,20 +23,10 @@ const ModalEditNoteWrap = styled(Box)({
   zIndex: 40,
 });
 
-const NoteWrap = styled(Card)({
-  marginBottom: '0.5rem',
+const Modal = styled(Card)({
+  margin: '0.5rem',
   padding: '1rem',
   color: '#5a5a65',
-});
-
-const NoteTitle = styled('h2')({
-  marginBottom: '0.5rem',
-});
-
-const NoteDate = styled('p')({
-  fontSize: '0.75rem',
-  borderRadius: 4,
-  marginBottom: '0.5rem',
 });
 
 const ModalFooter = styled('footer')({
@@ -44,46 +35,34 @@ const ModalFooter = styled('footer')({
   gap: 8,
 });
 
-const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
-  const { noteDate, noteId, noteTags, noteText } = notes.find(
-    (stateNote) => stateNote.noteId === note.noteId
-  );
+const ModalEditNote = ({ closeModal, note, onEditNote }) => {
+  const { noteDate, noteId, noteTags, noteText } = note;
   const [newTags, setNewTags] = useState(noteTags);
   const [newText, setNewText] = useState(noteText);
   const [addTag, setAddTag] = useState('');
 
-  const date = useMemo(
-    () =>
-      `${noteDate
-        .toLocaleTimeString()
-        .substring(0, 5)} ${noteDate.toLocaleDateString()}`,
-    [noteDate]
-  );
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    if (data.get('editNote').length) {
+    if (newText.length) {
       onEditNote({
         noteId,
-        noteText: data.get('editNote'),
+        noteText: newText,
         noteTags: newTags,
         noteDate: new Date(),
       });
-      if (closeModal) closeModal();
+      closeModal();
     }
   };
 
   return (
-    <ModalEditNoteWrap
-      onSubmit={handleSubmit}
-      onClick={closeModal}
-      component="form"
-      noValidate
-    >
-      <NoteWrap onClick={(e) => e.stopPropagation()}>
-        <NoteTitle>Edit note</NoteTitle>
-        <NoteDate>{date}</NoteDate>
+    <ModalEditNoteWrap onClick={closeModal}>
+      <Modal
+        onClick={(e) => e.stopPropagation()}
+        onSubmit={handleSubmit}
+        component="form"
+        noValidate
+      >
+        <ModalHeader noteDate={noteDate} />
         <EditText
           noteText={noteText}
           newText={newText}
@@ -103,15 +82,10 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
             Cancel
           </Button>
         </ModalFooter>
-      </NoteWrap>
+      </Modal>
     </ModalEditNoteWrap>
   );
 };
-function mapStateToProps(state) {
-  return {
-    notes: state.board.notes,
-  };
-}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -119,4 +93,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalEditNote);
+export default connect(null, mapDispatchToProps)(ModalEditNote);
