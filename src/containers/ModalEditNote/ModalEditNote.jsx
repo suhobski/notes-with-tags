@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { editNote } from '../../store/actions/board';
-import ButtonDeleteTag from '../../components/ButtonDeleteTag/ButtonDeleteTag';
 import EditText from './EditText';
-import TextInput from '../../components/UI/TextInput';
+import EditTags from './EditTags';
 
 const ModalEditNoteWrap = styled(Box)({
   position: 'fixed',
@@ -39,50 +38,6 @@ const NoteDate = styled('p')({
   marginBottom: '0.5rem',
 });
 
-const NoteList = styled('ul')({
-  display: 'inline-block',
-  width: '100%',
-  margin: 0,
-  padding: '0.75rem 0.5rem 0',
-  minHeight: 48,
-  border: 'none',
-  borderRadius: 4,
-  background: '#f8f8f8',
-  color: '#ffffff',
-});
-
-const NoteTag = styled('li')({
-  position: 'relative',
-  display: 'inline-block',
-  margin: '0 1rem 0.75rem 0',
-  padding: '0 0.25rem',
-  listStyleType: 'none',
-  borderRadius: 4,
-  background: '#5a5a65',
-  color: '#ffffff',
-});
-
-const ButtonAddTag = styled(Button)({
-  display: 'inline-block',
-  height: 56,
-  margin: '0.5rem',
-  marginRight: 0,
-  padding: '0 0.25rem',
-  listStyleType: 'none',
-  borderRadius: 4,
-  background: '#5bd497',
-  border: 'none',
-  color: '#ffffff',
-  '&:hover': {
-    background: '#57cf92',
-  },
-});
-
-const TagInputWrapper = styled(Box)({
-  display: 'grid',
-  gridTemplateColumns: 'auto 100px',
-});
-
 const ModalFooter = styled('footer')({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
@@ -104,30 +59,6 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
         .substring(0, 5)} ${noteDate.toLocaleDateString()}`,
     [noteDate]
   );
-
-  const handleChangeTag = (e) => {
-    setAddTag(e.target.value);
-  };
-
-  const onAddTagClick = () => {
-    // Если такой тег уже есть в списке, то не добавляем его
-    if (newTags.includes(addTag) || newTags.includes(`#${addTag}`)) {
-      return;
-    }
-
-    if (addTag.length > 0) {
-      if (addTag[0] === '#') {
-        setNewTags([...newTags, addTag]);
-        setAddTag('');
-      } else {
-        setNewTags([...newTags, `#${addTag}`]);
-        setAddTag('');
-      }
-    }
-  };
-
-  const deleteTag = (currentTag) =>
-    setNewTags(newTags.filter((tag) => tag !== currentTag));
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -158,32 +89,12 @@ const ModalEditNote = ({ closeModal, notes, note, onEditNote }) => {
           newText={newText}
           setNewText={setNewText}
         />
-        <Box>
-          <h4>Tags:</h4>
-          <NoteList>
-            {newTags.length ? (
-              newTags.map((tag) => (
-                <NoteTag key={tag}>
-                  {tag}
-                  <ButtonDeleteTag deleteTag={() => deleteTag(tag)} />
-                </NoteTag>
-              ))
-            ) : (
-              <p>...</p>
-            )}
-          </NoteList>
-          <TagInputWrapper>
-            <TextInput
-              value={addTag}
-              onChange={handleChangeTag}
-              name="addTag"
-              label="Write a tag..."
-            />
-            <ButtonAddTag onClick={onAddTagClick} variant="contained">
-              Add tag
-            </ButtonAddTag>
-          </TagInputWrapper>
-        </Box>
+        <EditTags
+          newTags={newTags}
+          setNewTags={setNewTags}
+          addTag={addTag}
+          setAddTag={setAddTag}
+        />
         <ModalFooter>
           <Button type="submit" variant="contained" fullWidth>
             Ok

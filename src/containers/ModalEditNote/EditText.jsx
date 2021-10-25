@@ -3,12 +3,13 @@ import React, { useMemo } from 'react';
 import TextInput from '../../components/UI/TextInput';
 
 export default function EditText({ noteText, newText, setNewText }) {
-  const textWithTags = useMemo(() => {
-    return noteText.replace(
+  const textWithTags = useMemo(() =>
+    noteText.replace(
       /#[a-zA-Zа-яА-Я0-9]+/g,
-      '<span style="display:inline-block;background-color:#5bd497;padding:0 4px;border-radius:4px">$&</span>'
-    );
-  }, [noteText]);
+      '<span style="display:inline-block;background-color:#5bd497;padding:0 4px;border-radius:4px">$&</span>',
+      [noteText]
+    )
+  );
 
   return (
     <Box>
