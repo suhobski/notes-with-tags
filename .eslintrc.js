@@ -20,6 +20,6 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': ['off'],
-    // 'prettier/prettier': 'error',
+    'react/jsx-props-no-spreading': ['off'], 
   },
 };

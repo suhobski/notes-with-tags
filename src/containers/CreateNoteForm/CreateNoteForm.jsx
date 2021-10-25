@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Card, TextField } from '@material-ui/core';
+import { Button, Card } from '@material-ui/core';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { connect } from 'react-redux';
 import uid from 'uid2';
 import { addNote } from '../../store/actions/board';
+import TextInput from '../../components/UI/TextInput';
 
 const CreateNote = styled(Card)({
   padding: '1rem 0.5rem',
@@ -43,17 +44,6 @@ const TextInputWrapper = styled(Card)({
   color: '#5a5a65',
 });
 
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#5A5A65',
-  },
-  '& .MuiOutlinedInput-root': {
-    '&.Mui-focused fieldset': {
-      borderColor: '#5A5A65',
-    },
-  },
-});
-
 const CreateNoteForm = ({ closeModal, onAddNote }) => {
   const [note, setNote] = useState('');
   const [tags, setTags] = useState(null);
@@ -78,7 +68,7 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
       });
       setNote('');
       setTags(null);
-      closeModal();
+      if (closeModal) closeModal();
     }
   };
 
@@ -88,14 +78,12 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <h4>Text:</h4>
         <TextInputWrapper>
-          <CssTextField
+          <TextInput
             id="note"
             name="note"
-            variant="outlined"
             label="write a note..."
             multiline
             autoFocus
-            fullWidth
             maxRows={4}
             value={note}
             onChange={handleChange}
