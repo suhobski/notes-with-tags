@@ -6,7 +6,7 @@ const List = styled('ul')({
   display: 'inline-block',
   width: '100%',
   margin: 0,
-  padding: '0.75rem 0.5rem 0',
+  padding: '0.75rem 0 0',
   minHeight: 48,
   border: 'none',
   borderRadius: 4,

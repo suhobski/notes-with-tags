@@ -12,7 +12,13 @@ export default function EditText({ noteText, newText, setNewText }) {
   );
 
   return (
-    <Box>
+    <Box
+      bgcolor="#F8F8F8"
+      p={1}
+      mb={2}
+      borderRadius="4px"
+      border="1px solid #cccccc"
+    >
       <h4>Text:</h4>
       <Typography
         style={{ margin: '8px 0' }}

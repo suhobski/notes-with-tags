@@ -46,7 +46,13 @@ export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
     setNewTags(newTags.filter((tag) => tag !== currentTag));
 
   return (
-    <Box>
+    <Box
+      bgcolor="#F8F8F8"
+      p={1}
+      mb={2}
+      borderRadius="4px"
+      border="1px solid #cccccc"
+    >
       <h4>Tags:</h4>
       <TagList newTags={newTags} deleteTag={deleteTag} />
       <TagInputWrapper>
