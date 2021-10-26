@@ -3,6 +3,7 @@ import { Card, styled } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { deleteNote } from '../../store/actions/board';
 import ModalEditNote from '../ModalEditNote/ModalEditNote';
+import ButtonDeleteNote from '../../components/UI/ButtonDeleteNote/ButtonDeleteNote';
 
 const NoteWrap = styled(Card)({
   position: 'relative',
@@ -53,24 +54,6 @@ const ButtonEdit = styled('button')({
   },
 });
 
-const ButtonDelete = styled('button')({
-  position: 'absolute',
-  top: 6,
-  right: 8,
-  width: 24,
-  height: 24,
-  outline: 'none',
-  borderRadius: 32,
-  border: 'none',
-  background: 'url(./img/trash.png) no-repeat center',
-  backgroundSize: '17px',
-  cursor: 'pointer',
-  transition: 'all .3s ease-out',
-  '&:active': {
-    backgroundColor: '#e0e0e0',
-  },
-});
-
 const Note = ({ note, notes, onDeleteNote }) => {
   const [isOpenEditNoteModal, setIsOpenEditNoteModal] = useState(false);
   const { noteDate, noteId, noteTags, noteText } = notes.find(
@@ -82,7 +65,7 @@ const Note = ({ note, notes, onDeleteNote }) => {
 
   return (
     <NoteWrap>
-      <ButtonDelete onClick={() => onDeleteNote(noteId)} />
+      <ButtonDeleteNote onClick={() => onDeleteNote(noteId)} />
       <ButtonEdit onClick={() => setIsOpenEditNoteModal(true)} />
       <NoteDate>{date}</NoteDate>
       <p style={{ padding: '8px 0' }}>{noteText}</p>
