@@ -1,5 +1,6 @@
 import { Box, styled, Button } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
+import Typography from '@mui/material/Typography';
 import TextInput from '../../../components/UI/TextInput/TextInput';
 import TagList from './TagList/TagList';
 
@@ -25,18 +26,32 @@ const TagInputWrapper = styled(Box)({
 });
 
 export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
-  const onAddTagClick = () => {
-    // Если такой тег уже есть в списке, то не добавляем его
-    if (newTags.includes(addTag) || newTags.includes(`#${addTag}`)) {
+  const [errorText, setErrorText] = useState('');
+
+  const handleInputChange = (e) => {
+    setAddTag(e.target.value);
+    setErrorText('');
+  };
+
+  const handleAddTagClick = () => {
+    const newTag = addTag.toLowerCase().trim();
+
+    if (/\p{P}+/u.test(newTag) || /\s+/.test(newTag)) {
+      setErrorText('please enter only letters and numbers');
       return;
     }
 
-    if (addTag.length > 0) {
-      if (addTag[0] === '#') {
-        setNewTags([...newTags, addTag]);
+    if (newTags.includes(newTag) || newTags.includes(`#${newTag}`)) {
+      setErrorText('this tag is already in the list');
+      return;
+    }
+
+    if (newTag.length > 0) {
+      if (newTag[0] === '#') {
+        setNewTags([...newTags, newTag]);
         setAddTag('');
       } else {
-        setNewTags([...newTags, `#${addTag}`]);
+        setNewTags([...newTags, `#${newTag}`]);
         setAddTag('');
       }
     }
@@ -58,13 +73,18 @@ export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
       <TagInputWrapper>
         <TextInput
           value={addTag}
-          onChange={(e) => setAddTag(e.target.value)}
+          onChange={handleInputChange}
           name="addTag"
           label="Write a tag..."
         />
-        <ButtonAddTag onClick={onAddTagClick} variant="contained">
+        <ButtonAddTag onClick={handleAddTagClick} variant="contained">
           Add tag
         </ButtonAddTag>
+        {errorText && (
+          <Typography variant="body1" color="error">
+            {errorText}
+          </Typography>
+        )}
       </TagInputWrapper>
     </Box>
   );
