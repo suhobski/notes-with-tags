@@ -9,7 +9,7 @@ const ButtonEditNote = (props) => (
     sx={{
       position: 'absolute',
       top: 0,
-      right: 40,
+      right: 50,
     }}
     {...props}
   >
