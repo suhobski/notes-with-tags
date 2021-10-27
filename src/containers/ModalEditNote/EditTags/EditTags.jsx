@@ -2,7 +2,7 @@ import { Box, styled, Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import TextInput from '../../../components/UI/TextInput/TextInput';
-import TagList from './TagList/TagList';
+import TagList from '../../../components/TagList/TagList';
 
 const ButtonAddTag = styled(Button)({
   display: 'inline-block',
@@ -68,8 +68,10 @@ export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
       borderRadius="4px"
       border="1px solid #cccccc"
     >
-      <h4>Tags:</h4>
-      <TagList newTags={newTags} deleteTag={deleteTag} />
+      <Typography variant="subtitle1" fontWeight="600" gutterBottom>
+        Tags:
+      </Typography>
+      <TagList tags={newTags} deleteTag={deleteTag} />
       <TagInputWrapper>
         <TextInput
           value={addTag}
