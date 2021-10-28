@@ -98,7 +98,7 @@ const Board = ({ filterTag, notes }) => {
       <NotesWrapper>
         <h3>Notes</h3>
         {boardNotes.length === 0 ? (
-          <p>...</p>
+          <p>haven&apos;t been written yet</p>
         ) : (
           boardNotes.map((note) => <Note note={note} key={note.noteId} />)
         )}

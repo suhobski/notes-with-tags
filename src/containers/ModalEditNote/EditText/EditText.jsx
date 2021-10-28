@@ -30,7 +30,7 @@ export default function EditText({ noteText, newText, setNewText }) {
         name="editNote"
         multiline
         maxRows={4}
-        label="Edit text"
+        label="editNotext"
         value={newText}
         onChange={(e) => setNewText(e.target.value)}
       />

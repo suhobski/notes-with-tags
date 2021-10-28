@@ -6,35 +6,13 @@ import { connect } from 'react-redux';
 import uid from 'uid2';
 import { addNote } from '../../store/actions/board';
 import TextInput from '../../components/UI/TextInput/TextInput';
+import TagList from '../../components/TagList/TagList';
 
 const CreateNote = styled(Card)({
   padding: '1rem 0.5rem',
   color: '#5a5a65',
   background: '#ffffff',
   borderRadius: '0.75rem',
-});
-
-const ListTags = styled('ul')({
-  width: '100%',
-  margin: 0,
-  marginBottom: '0.5rem',
-  padding: '0.5rem',
-  paddingBottom: 0,
-  minHeight: 40,
-  border: 'none',
-  borderRadius: 4,
-  background: '#f8f8f8',
-  color: '#ffffff',
-});
-
-const Tag = styled('li')({
-  display: 'inline-block',
-  margin: '0 0.5rem 0.5rem 0',
-  padding: '0 4px',
-  listStyleType: 'none',
-  borderRadius: 4,
-  background: '#5a5a65',
-  color: '#ffffff',
 });
 
 const TextInputWrapper = styled(Card)({
@@ -90,9 +68,7 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
           />
         </TextInputWrapper>
         <h4>Tags:</h4>
-        <ListTags>
-          {tags && tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
-        </ListTags>
+        <TagList tags={tags} />
         <Button type="submit" variant="contained" fullWidth>
           Ok
         </Button>
