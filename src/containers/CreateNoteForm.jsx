@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card } from '@material-ui/core';
+import { Button, Card, Typography } from '@material-ui/core';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { connect } from 'react-redux';
@@ -16,7 +16,7 @@ const CreateNote = styled(Card)({
   borderRadius: '0.75rem',
 });
 
-const CreateNoteForm = ({ closeModal, onAddNote }) => {
+const CreateNoteForm = ({ closeModal, onAddNote, matches }) => {
   const [note, setNote] = useState('');
   const [tags, setTags] = useState(null);
 
@@ -45,24 +45,35 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
   };
 
   return (
-    <CreateNote onClick={(e) => e.stopPropagation()}>
+    <CreateNote
+      onClick={(e) => e.stopPropagation()}
+      style={{ display: matches }}
+    >
       <h2 style={{ marginBottom: '0.5rem' }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
-        <FieldsetWrap pb="0">
-          <h4>Text:</h4>
-          <TextInput
-            id="note"
-            name="note"
-            label="write a note..."
-            multiline
-            autoFocus
-            maxRows={10}
-            value={note}
-            onChange={handleChange}
-          />
-        </FieldsetWrap>
-        <FieldsetWrap pb="0">
-          <h4>Tags:</h4>
+        <TextInput
+          id="note"
+          name="note"
+          label="write a note..."
+          multiline
+          autoFocus
+          minRows={3}
+          maxRows={10}
+          value={note}
+          onChange={handleChange}
+        />
+        <FieldsetWrap pb="0" minHeight="78px">
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              pb: '8px',
+            }}
+          >
+            <h4>Tags:</h4>
+            <Typography variant="body2">#tagexample</Typography>
+          </Box>
           <TagList tags={tags} />
         </FieldsetWrap>
         <Button type="submit" variant="contained" fullWidth>
