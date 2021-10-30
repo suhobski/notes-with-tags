@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Card, styled } from '@material-ui/core';
 import { connect } from 'react-redux';
 import Typography from '@mui/material/Typography';
-import { deleteNote } from '../../store/actions/board';
-import ModalEditNote from '../ModalEditNote/ModalEditNote';
-import ButtonDeleteNote from '../../components/UI/ButtonDeleteNote/ButtonDeleteNote';
-import ButtonEditNote from '../../components/UI/ButtonEditNote/ButtonEditNote';
-import TagList from '../../components/TagList/TagList';
+import { deleteNote } from '../store/actions/board';
+import ModalEditNote from './ModalEditNote/ModalEditNote';
+import ButtonDeleteNote from '../components/UI/ButtonDeleteNote';
+import ButtonEditNote from '../components/UI/ButtonEditNote';
+import TagList from '../components/TagList';
 
 const NoteWrap = styled(Card)({
   position: 'relative',
@@ -33,8 +33,22 @@ const Note = ({ note, onDeleteNote }) => {
 
   return (
     <NoteWrap>
-      <ButtonDeleteNote onClick={() => onDeleteNote(noteId)} />
-      <ButtonEditNote onClick={() => setIsOpenEditNoteModal(true)} />
+      <ButtonDeleteNote
+        onClick={() => onDeleteNote(noteId)}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          right: 4,
+        }}
+      />
+      <ButtonEditNote
+        onClick={() => setIsOpenEditNoteModal(true)}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          right: 50,
+        }}
+      />
       <NoteDate>{date}</NoteDate>
       <Typography variant="body1" py="8px">
         {noteText}

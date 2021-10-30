@@ -4,9 +4,9 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { connect } from 'react-redux';
 import uid from 'uid2';
-import { addNote } from '../../store/actions/board';
-import TextInput from '../../components/UI/TextInput/TextInput';
-import TagList from '../../components/TagList/TagList';
+import { addNote } from '../store/actions/board';
+import TextInput from '../components/UI/TextInput';
+import TagList from '../components/TagList';
 
 const CreateNote = styled(Card)({
   padding: '1rem 0.5rem',

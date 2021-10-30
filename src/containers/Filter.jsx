@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import { connect } from 'react-redux';
 import { Box } from '@mui/system';
-import setTag from '../../store/actions/filter';
+import setTag from '../store/actions/filter';
 
 const FilterWrap = styled(Box)({
   position: 'relative',

@@ -1,8 +1,8 @@
 import { Box, styled, Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
-import TextInput from '../../../components/UI/TextInput/TextInput';
-import TagList from '../../../components/TagList/TagList';
+import TextInput from '../../components/UI/TextInput';
+import TagList from '../../components/TagList';
 
 const ButtonAddTag = styled(Button)({
   display: 'inline-block',

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { editNote } from '../../store/actions/board';
-import EditText from './EditText/EditText';
-import EditTags from './EditTags/EditTags';
-import ModalHeader from './ModalHeader/ModalHeader';
+import EditText from './EditText';
+import EditTags from './EditTags';
+import ModalHeader from './ModalHeader';
 
 const ModalEditNoteWrap = styled(Box)({
   position: 'fixed',

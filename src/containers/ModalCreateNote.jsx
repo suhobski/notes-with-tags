@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, styled } from '@material-ui/core';
-import CreateNoteForm from '../CreateNoteForm/CreateNoteForm';
+import CreateNoteForm from './CreateNoteForm';
 
 const Modal = styled(Card)({
   position: 'fixed',

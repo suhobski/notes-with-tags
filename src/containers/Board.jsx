@@ -5,9 +5,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { connect } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Box } from '@mui/system';
-import Filter from '../Filter/Filter';
-import Note from '../Note/Note';
-import ModalCreateNote from '../ModalCreateNote/ModalCreateNote';
+import Filter from './Filter';
+import Note from './Note';
+import ModalCreateNote from './ModalCreateNote';
 
 const BoardWrap = styled(Card)({
   position: 'relative',

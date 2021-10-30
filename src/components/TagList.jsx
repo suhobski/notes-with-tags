@@ -1,6 +1,6 @@
 import { styled } from '@material-ui/core';
 import React from 'react';
-import ButtonDeleteTag from '../UI/ButtonDeleteTag/ButtonDeleteTag';
+import ButtonDeleteTag from './UI/ButtonDeleteTag';
 
 const List = styled('ul')({
   width: '100%',
