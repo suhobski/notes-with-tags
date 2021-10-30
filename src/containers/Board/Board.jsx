@@ -64,9 +64,9 @@ const Board = ({ filterTag, notes }) => {
         setIsFilterOpen={setIsFilterOpen}
       />
       <FieldsetWrap>
-        <h3>Notes</h3>
+        <h2 style={{ marginBottom: 8 }}>Notes</h2>
         {boardNotes.length === 0 ? (
-          <p>haven&apos;t been written yet</p>
+          <p>not found...</p>
         ) : (
           boardNotes.map((note) => <Note note={note} key={note.noteId} />)
         )}
