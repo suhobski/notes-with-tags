@@ -21,28 +21,23 @@ const AppWrapper = styled(Container)({
 const MainContent = styled(CardContent)({
   display: 'grid',
   gridTemplateColumns: 'minmax(300px, 33%) auto',
+  alignItems: 'stretch',
   gap: 8,
   padding: '8px 0',
 });
 
 const App = () => {
-  const matches = useMediaQuery('(min-width:600px)');
+  const matches = useMediaQuery('(max-width:600px)');
 
   return (
     <AppWrapper maxWidth="md">
       <Header />
       <MainContent
         style={{
-          gridTemplateColumns: matches ? 'minmax(300px, 33%) auto' : 'auto',
+          gridTemplateColumns: matches ? 'auto' : 'minmax(300px, 33%) auto',
         }}
       >
-        <div
-          style={{
-            display: matches ? 'block' : 'none',
-          }}
-        >
-          <CreateNoteForm />
-        </div>
+        <CreateNoteForm matches={matches ? 'none' : 'block'} />
         <Board />
       </MainContent>
       <Footer />
