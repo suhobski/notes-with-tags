@@ -1,5 +1,6 @@
-import { Box, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
+import FieldsetWrap from '../../components/UI/FieldsetWrap';
 import TextInput from '../../components/UI/TextInput';
 
 export default function EditText({ noteText, newText, setNewText }) {
@@ -12,13 +13,7 @@ export default function EditText({ noteText, newText, setNewText }) {
   );
 
   return (
-    <Box
-      bgcolor="#F8F8F8"
-      p={1}
-      mb={2}
-      borderRadius="4px"
-      border="1px solid #cccccc"
-    >
+    <FieldsetWrap>
       <h4>Text:</h4>
       <Typography
         style={{ margin: '8px 0' }}
@@ -34,6 +29,6 @@ export default function EditText({ noteText, newText, setNewText }) {
         value={newText}
         onChange={(e) => setNewText(e.target.value)}
       />
-    </Box>
+    </FieldsetWrap>
   );
 }

@@ -7,13 +7,16 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Box } from '@mui/system';
 import Filter from './Filter';
 import Note from './Note';
-import ModalCreateNote from './ModalCreateNote';
+import ModalWrap from '../components/UI/ModalWrap';
+import CreateNoteForm from './CreateNoteForm';
+import FieldsetWrap from '../components/UI/FieldsetWrap';
 
 const BoardWrap = styled(Card)({
   position: 'relative',
   padding: '1rem 0.5rem',
   borderRadius: 12,
   background: '#ffffff',
+  color: '#5a5a65',
   zIndex: 0,
 });
 
@@ -28,12 +31,6 @@ const SearchTagButton = styled(IconButton)({
   position: 'absolute',
   top: 10,
   right: 8,
-});
-
-const NotesWrapper = styled(Card)({
-  padding: '0.5rem',
-  background: '#f8f8f8',
-  color: '#5a5a65',
 });
 
 const ButtonAddNote = styled(Button)({
@@ -95,14 +92,14 @@ const Board = ({ filterTag, notes }) => {
         )}
         {isFilterOpen && <Filter closeFilter={() => setIsFilterOpen(false)} />}
       </BoardHeader>
-      <NotesWrapper>
+      <FieldsetWrap>
         <h3>Notes</h3>
         {boardNotes.length === 0 ? (
           <p>haven&apos;t been written yet</p>
         ) : (
           boardNotes.map((note) => <Note note={note} key={note.noteId} />)
         )}
-      </NotesWrapper>
+      </FieldsetWrap>
       <ButtonAddNote
         variant="contained"
         onClick={handleButton}
@@ -113,7 +110,11 @@ const Board = ({ filterTag, notes }) => {
       >
         +
       </ButtonAddNote>
-      {isOpenModal ? <ModalCreateNote closeModal={closeModal} /> : null}
+      {isOpenModal && (
+        <ModalWrap onClick={closeModal}>
+          <CreateNoteForm closeModal={closeModal} />
+        </ModalWrap>
+      )}
     </BoardWrap>
   );
 };

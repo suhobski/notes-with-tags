@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import TextInput from '../../components/UI/TextInput';
 import TagList from '../../components/TagList';
+import FieldsetWrap from '../../components/UI/FieldsetWrap';
 
 const ButtonAddTag = styled(Button)({
   display: 'inline-block',
@@ -61,13 +62,7 @@ export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
     setNewTags(newTags.filter((tag) => tag !== currentTag));
 
   return (
-    <Box
-      bgcolor="#F8F8F8"
-      p={1}
-      mb={2}
-      borderRadius="4px"
-      border="1px solid #cccccc"
-    >
+    <FieldsetWrap>
       <Typography variant="subtitle1" fontWeight="600" gutterBottom>
         Tags:
       </Typography>
@@ -88,6 +83,6 @@ export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
           </Typography>
         )}
       </TagInputWrapper>
-    </Box>
+    </FieldsetWrap>
   );
 }

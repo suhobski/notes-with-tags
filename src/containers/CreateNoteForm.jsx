@@ -7,19 +7,13 @@ import uid from 'uid2';
 import { addNote } from '../store/actions/board';
 import TextInput from '../components/UI/TextInput';
 import TagList from '../components/TagList';
+import FieldsetWrap from '../components/UI/FieldsetWrap';
 
 const CreateNote = styled(Card)({
   padding: '1rem 0.5rem',
   color: '#5a5a65',
   background: '#ffffff',
   borderRadius: '0.75rem',
-});
-
-const TextInputWrapper = styled(Card)({
-  marginBottom: '0.5rem',
-  padding: '0.5rem',
-  background: '#f8f8f8',
-  color: '#5a5a65',
 });
 
 const CreateNoteForm = ({ closeModal, onAddNote }) => {
@@ -54,21 +48,23 @@ const CreateNoteForm = ({ closeModal, onAddNote }) => {
     <CreateNote onClick={(e) => e.stopPropagation()}>
       <h2 style={{ marginBottom: '0.5rem' }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
-        <h4>Text:</h4>
-        <TextInputWrapper>
+        <FieldsetWrap pb="0">
+          <h4>Text:</h4>
           <TextInput
             id="note"
             name="note"
             label="write a note..."
             multiline
             autoFocus
-            maxRows={4}
+            maxRows={10}
             value={note}
             onChange={handleChange}
           />
-        </TextInputWrapper>
-        <h4>Tags:</h4>
-        <TagList tags={tags} />
+        </FieldsetWrap>
+        <FieldsetWrap pb="0">
+          <h4>Tags:</h4>
+          <TagList tags={tags} />
+        </FieldsetWrap>
         <Button type="submit" variant="contained" fullWidth>
           Ok
         </Button>

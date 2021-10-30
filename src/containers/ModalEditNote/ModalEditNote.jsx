@@ -1,27 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Card } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { editNote } from '../../store/actions/board';
 import EditText from './EditText';
 import EditTags from './EditTags';
 import ModalHeader from './ModalHeader';
-
-const ModalEditNoteWrap = styled(Box)({
-  position: 'fixed',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  display: 'grid',
-  gridTemplateColumns: 'minmax(264px, 500px)',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '0.5rem',
-  background: 'rgba(0, 0, 0, 0.5)',
-  zIndex: 40,
-});
+import ModalWrap from '../../components/UI/ModalWrap';
 
 const Modal = styled(Card)({
   margin: '0.5rem',
@@ -55,7 +40,7 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
   };
 
   return (
-    <ModalEditNoteWrap onClick={closeModal}>
+    <ModalWrap onClick={closeModal}>
       <Modal
         onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit}
@@ -83,7 +68,7 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
           </Button>
         </ModalFooter>
       </Modal>
-    </ModalEditNoteWrap>
+    </ModalWrap>
   );
 };
 
