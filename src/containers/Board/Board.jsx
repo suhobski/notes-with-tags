@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, styled } from '@material-ui/core';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
 import { connect } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Box } from '@mui/system';
-import Filter from './Filter';
-import Note from './Note';
-import ModalWrap from '../components/UI/ModalWrap';
-import CreateNoteForm from './CreateNoteForm';
-import FieldsetWrap from '../components/UI/FieldsetWrap';
+import Note from '../Note';
+import ModalWrap from '../../components/UI/ModalWrap';
+import CreateNoteForm from '../CreateNoteForm';
+import FieldsetWrap from '../../components/UI/FieldsetWrap';
+import BoardHeader from './BoardHeader';
 
 const BoardWrap = styled(Card)({
   position: 'relative',
@@ -18,19 +15,6 @@ const BoardWrap = styled(Card)({
   background: '#ffffff',
   color: '#5a5a65',
   zIndex: 0,
-});
-
-const BoardHeader = styled(Box)({
-  height: 48,
-  display: 'grid',
-  gridTemplateColumns: '1fr minmax(70px, 270px)',
-  justifyContent: 'space-between',
-});
-
-const SearchTagButton = styled(IconButton)({
-  position: 'absolute',
-  top: 10,
-  right: 8,
 });
 
 const ButtonAddNote = styled(Button)({
@@ -44,11 +28,6 @@ const ButtonAddNote = styled(Button)({
   borderRadius: '50%',
   zIndex: 30,
   transition: 'all 0.3s ease-out',
-});
-
-const BoardTitle = styled('h2')({
-  marginBottom: '0.5rem',
-  color: '#5a5a65',
 });
 
 const Board = ({ filterTag, notes }) => {
@@ -79,19 +58,10 @@ const Board = ({ filterTag, notes }) => {
 
   return (
     <BoardWrap>
-      <BoardHeader>
-        <BoardTitle>Board</BoardTitle>
-        {!isFilterOpen && (
-          <SearchTagButton
-            style={{ position: 'absolute' }}
-            size="large"
-            onClick={() => setIsFilterOpen(true)}
-          >
-            <SearchIcon />
-          </SearchTagButton>
-        )}
-        {isFilterOpen && <Filter closeFilter={() => setIsFilterOpen(false)} />}
-      </BoardHeader>
+      <BoardHeader
+        isFilterOpen={isFilterOpen}
+        setIsFilterOpen={setIsFilterOpen}
+      />
       <FieldsetWrap>
         <h3>Notes</h3>
         {boardNotes.length === 0 ? (

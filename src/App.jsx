@@ -3,7 +3,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { CardContent, Container, styled } from '@material-ui/core';
 import Header from './components/Header';
 import CreateNoteForm from './containers/CreateNoteForm';
-import Board from './containers/Board';
+import Board from './containers/Board/Board';
 import Footer from './components/Footer';
 
 const AppWrapper = styled(Container)({

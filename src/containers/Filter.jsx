@@ -8,10 +8,10 @@ import setTag from '../store/actions/filter';
 
 const FilterWrap = styled(Box)({
   position: 'relative',
-  top: -2,
+  top: 2,
   display: 'flex',
   justifyContent: 'right',
-  marginBottom: '0.5rem',
+  height: 48,
   padding: '0.5rem',
   color: '#5a5a65',
 });
@@ -22,6 +22,7 @@ const FilterInput = styled('input')({
   paddingLeft: 8,
   border: 'none',
   borderBottom: '1px solid #5a5a65',
+  background: '#f8f8f8',
   '&:focus': {
     border: 'none',
     outline: 'none',
