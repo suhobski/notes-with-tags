@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
-import { Card, styled } from '@material-ui/core';
+import { Card, styled, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import Typography from '@mui/material/Typography';
 import { deleteNote } from '../store/actions/board';
 import ModalEditNote from './ModalEditNote/ModalEditNote';
 import ButtonDeleteNote from '../components/UI/ButtonDeleteNote';
 import ButtonEditNote from '../components/UI/ButtonEditNote';
 import TagList from '../components/TagList';
+import NoteText from '../components/UI/NoteText';
 
 const NoteWrap = styled(Card)({
   position: 'relative',
   marginBottom: '0.5rem',
   padding: '0.5rem 0.5rem 0',
-  border: '1px solid #cccccc',
   color: '#5A5A65',
   '&:last-child': {
     marginBottom: 0,
   },
-});
-
-const NoteDate = styled('p')({
-  fontSize: 12,
-  borderRadius: 4,
 });
 
 const Note = ({ note, onDeleteNote }) => {
@@ -49,10 +43,8 @@ const Note = ({ note, onDeleteNote }) => {
           right: 50,
         }}
       />
-      <NoteDate>{date}</NoteDate>
-      <Typography variant="body1" py="8px">
-        {noteText}
-      </Typography>
+      <Typography variant="body2">{date}</Typography>
+      <NoteText>{noteText}</NoteText>
       {noteTags.length > 0 && <TagList tags={noteTags} />}
       {isOpenEditNoteModal ? (
         <ModalEditNote

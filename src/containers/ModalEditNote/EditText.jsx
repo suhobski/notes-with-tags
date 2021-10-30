@@ -1,6 +1,7 @@
-import { Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
+import Typography from '@mui/material/Typography';
 import FieldsetWrap from '../../components/UI/FieldsetWrap';
+import NoteText from '../../components/UI/NoteText';
 import TextInput from '../../components/UI/TextInput';
 
 export default function EditText({ noteText, newText, setNewText }) {
@@ -14,12 +15,10 @@ export default function EditText({ noteText, newText, setNewText }) {
 
   return (
     <FieldsetWrap>
-      <h4>Text:</h4>
-      <Typography
-        style={{ margin: '8px 0' }}
-        gutterBottom
-        dangerouslySetInnerHTML={{ __html: textWithTags }}
-      />
+      <Typography variant="subtitle1" fontWeight="600" gutterBottom>
+        Text:
+      </Typography>
+      <NoteText dangerouslySetInnerHTML={{ __html: textWithTags }} />
       <TextInput
         id="editNote"
         name="editNote"

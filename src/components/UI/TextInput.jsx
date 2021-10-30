@@ -4,6 +4,7 @@ import { styled, TextField } from '@material-ui/core';
 const CssTextField = styled(TextField)({
   '&': {
     margin: '8px 0',
+    background: '#f8f8f8',
   },
   '& label.Mui-focused': {
     color: '#5A5A65',

@@ -20,7 +20,7 @@ const Header = styled(Box)({
 export default function BoardHeader({ isFilterOpen, setIsFilterOpen }) {
   return (
     <Header>
-      <h3>Filter</h3>
+      <h2>Filter</h2>
       {isFilterOpen ? (
         <Filter closeFilter={() => setIsFilterOpen(false)} />
       ) : (

@@ -6,9 +6,8 @@ const List = styled('ul')({
   width: '100%',
   minHeight: 32,
   margin: '0',
-  padding: '8px 0',
+  padding: 0,
   border: 'none',
-  borderRadius: 4,
   color: '#ffffff',
 });
 
