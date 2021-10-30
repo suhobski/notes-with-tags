@@ -49,8 +49,9 @@ const Board = ({ filterTag, notes }) => {
   };
 
   useEffect(() => {
+    const regexp = new RegExp(filterTag, 'i');
     if (filterTag.length >= 2) {
-      setBoardNotes(notes.filter((note) => note.noteTags.includes(filterTag)));
+      setBoardNotes(notes.filter((note) => regexp.test(note.noteTags)));
     } else {
       setBoardNotes(notes);
     }
