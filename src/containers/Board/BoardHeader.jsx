@@ -17,14 +17,14 @@ const Header = styled(Box)({
   borderRadius: 4,
 });
 
-export default function BoardHeader({ isFilterOpen, setIsFilterOpen }) {
+export default function BoardHeader({ isFilterOpen, closeFilter, openFilter }) {
   return (
     <Header>
       <h2>Filter</h2>
       {isFilterOpen ? (
-        <Filter closeFilter={() => setIsFilterOpen(false)} />
+        <Filter closeFilter={closeFilter} />
       ) : (
-        <IconButton size="large" onClick={() => setIsFilterOpen(true)} mb="0">
+        <IconButton size="large" onClick={openFilter} mb="0">
           <SearchIcon />
         </IconButton>
       )}

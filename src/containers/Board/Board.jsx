@@ -61,7 +61,8 @@ const Board = ({ filterTag, notes }) => {
     <BoardWrap>
       <BoardHeader
         isFilterOpen={isFilterOpen}
-        setIsFilterOpen={setIsFilterOpen}
+        closeFilter={() => setIsFilterOpen(false)}
+        openFilter={() => setIsFilterOpen(true)}
       />
       <FieldsetWrap>
         <h2 style={{ marginBottom: 8 }}>Notes</h2>

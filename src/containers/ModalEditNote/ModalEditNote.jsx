@@ -24,7 +24,6 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
   const { noteDate, noteId, noteTags, noteText } = note;
   const [newTags, setNewTags] = useState(noteTags);
   const [newText, setNewText] = useState(noteText);
-  const [addTag, setAddTag] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,14 +50,9 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
         <EditText
           noteText={noteText}
           newText={newText}
-          setNewText={setNewText}
+          editText={(text) => setNewText(text)}
         />
-        <EditTags
-          newTags={newTags}
-          setNewTags={setNewTags}
-          addTag={addTag}
-          setAddTag={setAddTag}
-        />
+        <EditTags newTags={newTags} updateTags={(tags) => setNewTags(tags)} />
         <ModalFooter>
           <Button type="submit" variant="contained" fullWidth>
             Ok

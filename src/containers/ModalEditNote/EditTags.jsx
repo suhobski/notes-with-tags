@@ -26,40 +26,38 @@ const TagInputWrapper = styled(Box)({
   gridTemplateColumns: 'auto 100px',
 });
 
-export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
+export default function EditTags({ newTags, updateTags }) {
+  const [tag, setTag] = useState('');
   const [errorText, setErrorText] = useState('');
 
   const handleInputChange = (e) => {
-    setAddTag(e.target.value);
+    setTag(e.target.value);
     setErrorText('');
   };
 
   const handleAddTagClick = () => {
-    const newTag = addTag.toLowerCase().trim();
+    const newTag = tag.toLowerCase().trim();
 
     if (/\p{P}+/u.test(newTag) || /\s+/.test(newTag)) {
       setErrorText('please enter only letters and numbers');
       return;
     }
 
-    if (newTags.includes(newTag) || newTags.includes(`#${newTag}`)) {
+    if (newTags.includes(newTag)) {
       setErrorText('this tag is already in the list');
       return;
     }
 
     if (newTag.length > 0) {
-      if (newTag[0] === '#') {
-        setNewTags([...newTags, newTag]);
-        setAddTag('');
-      } else {
-        setNewTags([...newTags, `#${newTag}`]);
-        setAddTag('');
-      }
+      updateTags([...newTags, `#${newTag}`]);
+      setTag('');
+    } else {
+      setErrorText('min. length is one character');
     }
   };
 
   const deleteTag = (currentTag) =>
-    setNewTags(newTags.filter((tag) => tag !== currentTag));
+    updateTags(newTags.filter((item) => item !== currentTag));
 
   return (
     <FieldsetWrap>
@@ -69,7 +67,7 @@ export default function EditTags({ newTags, setNewTags, addTag, setAddTag }) {
       <TagList tags={newTags} deleteTag={deleteTag} />
       <TagInputWrapper>
         <TextInput
-          value={addTag}
+          value={tag}
           onChange={handleInputChange}
           name="addTag"
           label="Write a tag..."
