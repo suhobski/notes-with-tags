@@ -1,5 +1,6 @@
-import { styled } from '@material-ui/core';
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
+import { styled } from '@material-ui/core';
 
 const Header = styled('header')({
   display: 'flex',
@@ -28,3 +29,7 @@ export default function ModalHeader({ noteDate }) {
     </Header>
   );
 }
+
+ModalHeader.propTypes = {
+  noteDate: PropTypes.instanceOf(Date).isRequired,
+};

@@ -1,4 +1,5 @@
 import { Box, styled, Button } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import TextInput from '../../components/UI/TextInput';
@@ -84,3 +85,8 @@ export default function EditTags({ newTags, updateTags }) {
     </FieldsetWrap>
   );
 }
+
+EditTags.propTypes = {
+  newTags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  updateTags: PropTypes.func.isRequired,
+};

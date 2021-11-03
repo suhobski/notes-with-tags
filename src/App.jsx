@@ -37,7 +37,7 @@ const App = () => {
           gridTemplateColumns: matches ? 'auto' : 'minmax(300px, 33%) auto',
         }}
       >
-        <CreateNoteForm matches={matches ? 'none' : 'block'} />
+        <CreateNoteForm formDisplay={matches ? 'none' : 'block'} />
         <Board />
       </MainContent>
       <Footer />

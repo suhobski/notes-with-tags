@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import FieldsetWrap from '../../components/UI/FieldsetWrap';
 import NoteText from '../../components/UI/NoteText';
@@ -18,7 +19,7 @@ export default function EditText({ noteText, newText, editText }) {
       <Typography variant="subtitle1" fontWeight="600" gutterBottom>
         Text:
       </Typography>
-      <NoteText dangerouslySetInnerHTML={{ __html: textWithTags }} />
+      <NoteText textWithTags={textWithTags} />
       <TextInput
         id="editNote"
         name="editNote"
@@ -31,3 +32,9 @@ export default function EditText({ noteText, newText, editText }) {
     </FieldsetWrap>
   );
 }
+
+EditText.propTypes = {
+  noteText: PropTypes.string.isRequired,
+  newText: PropTypes.string.isRequired,
+  editText: PropTypes.func.isRequired,
+};

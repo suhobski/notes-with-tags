@@ -1,7 +1,8 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Box } from '@mui/material';
 
-export default function FieldsetWrap({ children, ...props }) {
+export default function FieldsetWrap({ children, pb, minHeight }) {
   return (
     <Box
       bgcolor="#f8f8f8"
@@ -9,9 +10,22 @@ export default function FieldsetWrap({ children, ...props }) {
       mb={2}
       borderRadius="4px"
       border="1px solid #cccccc"
-      {...props}
+      pb={pb}
+      minHeight={minHeight}
     >
       {children}
     </Box>
   );
 }
+
+FieldsetWrap.defaultProps = {
+  children: null,
+  pb: 1,
+  minHeight: 'unset',
+};
+
+FieldsetWrap.propTypes = {
+  children: PropTypes.node,
+  pb: PropTypes.number,
+  minHeight: PropTypes.number,
+};

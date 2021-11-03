@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from '@material-ui/core';
+import { PropTypes } from 'prop-types';
 
 const ButtonDelete = styled('button')({
   position: 'absolute',
@@ -41,5 +42,9 @@ const ButtonDelete = styled('button')({
 });
 
 const ButtonDeleteTag = ({ deleteTag }) => <ButtonDelete onClick={deleteTag} />;
+
+ButtonDeleteTag.propTypes = {
+  deleteTag: PropTypes.func.isRequired,
+};
 
 export default ButtonDeleteTag;

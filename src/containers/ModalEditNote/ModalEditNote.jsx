@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Card } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { styled } from '@mui/material/styles';
@@ -64,6 +65,17 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
       </Modal>
     </ModalWrap>
   );
+};
+
+ModalEditNote.propTypes = {
+  note: PropTypes.PropTypes.shape({
+    noteId: PropTypes.string,
+    noteText: PropTypes.string,
+    noteTags: PropTypes.arrayOf(PropTypes.string),
+    noteDate: PropTypes.instanceOf(Date),
+  }).isRequired,
+  closeModal: PropTypes.func.isRequired,
+  onEditNote: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {

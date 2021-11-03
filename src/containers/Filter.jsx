@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
@@ -64,6 +65,11 @@ const Filter = ({ onSetTag, closeFilter }) => {
       </CloseFilterButton>
     </FilterWrap>
   );
+};
+
+Filter.propTypes = {
+  onSetTag: PropTypes.func.isRequired,
+  closeFilter: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Card, Typography } from '@material-ui/core';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
@@ -16,7 +17,7 @@ const CreateNote = styled(Card)({
   borderRadius: '0.75rem',
 });
 
-const CreateNoteForm = ({ closeModal, onAddNote, matches }) => {
+const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
   const [note, setNote] = useState('');
   const [tags, setTags] = useState(null);
 
@@ -47,7 +48,7 @@ const CreateNoteForm = ({ closeModal, onAddNote, matches }) => {
   return (
     <CreateNote
       onClick={(e) => e.stopPropagation()}
-      style={{ display: matches }}
+      style={{ display: formDisplay }}
     >
       <h2 style={{ marginBottom: '0.5rem' }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
@@ -82,6 +83,17 @@ const CreateNoteForm = ({ closeModal, onAddNote, matches }) => {
       </Box>
     </CreateNote>
   );
+};
+
+CreateNoteForm.defaultProps = {
+  closeModal: null,
+  formDisplay: 'block',
+};
+
+CreateNoteForm.propTypes = {
+  closeModal: PropTypes.func,
+  onAddNote: PropTypes.func.isRequired,
+  formDisplay: PropTypes.string,
 };
 
 function mapDispatchToProps(dispatch) {

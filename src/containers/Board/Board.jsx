@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { PropTypes } from 'prop-types';
 import { Button, Card, styled } from '@material-ui/core';
 import { connect } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -89,6 +90,16 @@ const Board = ({ filterTag, notes }) => {
       )}
     </BoardWrap>
   );
+};
+
+Board.defaultProps = {
+  notes: [],
+  filterTag: '',
+};
+
+Board.propTypes = {
+  filterTag: PropTypes.string,
+  notes: PropTypes.arrayOf(PropTypes.object),
 };
 
 function mapStateToProps(state) {

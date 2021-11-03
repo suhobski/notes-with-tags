@@ -1,5 +1,6 @@
-import { styled } from '@material-ui/core';
 import React from 'react';
+import { PropTypes } from 'prop-types';
+import { styled } from '@material-ui/core';
 import ButtonDeleteTag from './UI/ButtonDeleteTag';
 
 const List = styled('ul')({
@@ -36,3 +37,13 @@ export default function TagList({ tags, deleteTag = null }) {
     </List>
   );
 }
+
+TagList.defaultProps = {
+  tags: [],
+  deleteTag: null,
+};
+
+TagList.propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.string),
+  deleteTag: PropTypes.func,
+};

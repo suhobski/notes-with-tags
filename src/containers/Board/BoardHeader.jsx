@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
@@ -31,3 +32,9 @@ export default function BoardHeader({ isFilterOpen, closeFilter, openFilter }) {
     </Header>
   );
 }
+
+BoardHeader.propTypes = {
+  isFilterOpen: PropTypes.bool.isRequired,
+  closeFilter: PropTypes.func.isRequired,
+  openFilter: PropTypes.func.isRequired,
+};

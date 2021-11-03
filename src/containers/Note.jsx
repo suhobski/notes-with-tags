@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, styled, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { deleteNote } from '../store/actions/board';
@@ -28,7 +29,7 @@ const Note = ({ note, onDeleteNote }) => {
   return (
     <NoteWrap>
       <ButtonDeleteNote
-        onClick={() => onDeleteNote(noteId)}
+        deleteNote={() => onDeleteNote(noteId)}
         sx={{
           position: 'absolute',
           top: 0,
@@ -36,7 +37,7 @@ const Note = ({ note, onDeleteNote }) => {
         }}
       />
       <ButtonEditNote
-        onClick={() => setIsOpenEditNoteModal(true)}
+        openEditModal={() => setIsOpenEditNoteModal(true)}
         sx={{
           position: 'absolute',
           top: 0,
@@ -54,6 +55,16 @@ const Note = ({ note, onDeleteNote }) => {
       ) : null}
     </NoteWrap>
   );
+};
+
+Note.propTypes = {
+  note: PropTypes.PropTypes.shape({
+    noteId: PropTypes.string,
+    noteText: PropTypes.string,
+    noteTags: PropTypes.arrayOf(PropTypes.string),
+    noteDate: PropTypes.instanceOf(Date),
+  }).isRequired,
+  onDeleteNote: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
