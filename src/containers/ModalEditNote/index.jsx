@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { styled } from '@mui/material/styles';
 import { editNote } from '../../store/actions/board';
 import EditText from './EditText';
 import EditTags from './EditTags';
 import ModalHeader from './ModalHeader';
 import ModalWrap from '../../components/UI/ModalWrap';
-
-const Modal = styled(Card)({
-  margin: '0.5rem',
-  padding: '1rem',
-  color: '#5a5a65',
-});
-
-const ModalFooter = styled('footer')({
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gap: 8,
-});
+import ModalWindow from './ModalWindow';
+import Footer from './Footer';
 
 const ModalEditNote = ({ closeModal, note, onEditNote }) => {
   const { noteDate, noteId, noteTags, noteText } = note;
@@ -41,11 +30,10 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
 
   return (
     <ModalWrap onClick={closeModal}>
-      <Modal
+      <ModalWindow
         onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit}
         component="form"
-        noValidate
       >
         <ModalHeader noteDate={noteDate} />
         <EditText
@@ -54,15 +42,15 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
           editText={(text) => setNewText(text)}
         />
         <EditTags newTags={newTags} updateTags={(tags) => setNewTags(tags)} />
-        <ModalFooter>
+        <Footer>
           <Button type="submit" variant="contained" fullWidth>
             Ok
           </Button>
           <Button onClick={closeModal} fullWidth variant="contained">
             Cancel
           </Button>
-        </ModalFooter>
-      </Modal>
+        </Footer>
+      </ModalWindow>
     </ModalWrap>
   );
 };

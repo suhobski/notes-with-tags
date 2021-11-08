@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, styled, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { deleteNote } from '../store/actions/board';
-import ModalEditNote from './ModalEditNote/ModalEditNote';
+import ModalEditNote from './ModalEditNote';
 import ButtonDeleteNote from '../components/UI/ButtonDeleteNote';
 import ButtonEditNote from '../components/UI/ButtonEditNote';
 import TagList from '../components/TagList';

@@ -15,6 +15,7 @@ const CreateNote = styled(Card)({
   color: '#5a5a65',
   background: '#ffffff',
   borderRadius: '0.75rem',
+  zIndex: 0,
 });
 
 const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {

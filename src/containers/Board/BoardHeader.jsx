@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { styled } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box } from '@mui/system';
 import Filter from '../Filter';
 
-const Header = styled(Box)({
+const Header = styled('header')({
   display: 'grid',
   gridTemplateColumns: '1fr auto',
   alignItems: 'center',

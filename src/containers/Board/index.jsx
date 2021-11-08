@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, Card, styled } from '@material-ui/core';
 import { connect } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Note from '../Note';
@@ -8,28 +7,8 @@ import ModalWrap from '../../components/UI/ModalWrap';
 import CreateNoteForm from '../CreateNoteForm';
 import FieldsetWrap from '../../components/UI/FieldsetWrap';
 import BoardHeader from './BoardHeader';
-
-const BoardWrap = styled(Card)({
-  position: 'relative',
-  padding: '1rem 0.5rem',
-  borderRadius: 12,
-  background: '#ffffff',
-  color: '#5a5a65',
-  zIndex: 0,
-});
-
-const ButtonAddNote = styled(Button)({
-  position: 'fixed',
-  bottom: 16,
-  right: 16,
-  padding: 6,
-  width: 40,
-  textAlign: 'center',
-  fontSize: '1.75rem',
-  borderRadius: '50%',
-  zIndex: 30,
-  transition: 'all 0.3s ease-out',
-});
+import BoardWrap from './BoardWrap';
+import ButtonAddNote from './ButtonAddNote';
 
 const Board = ({ filterTag, notes }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
