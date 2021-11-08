@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Card, styled, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { deleteNote } from '../store/actions/board';
-import ModalEditNote from './ModalEditNote';
-import ButtonDeleteNote from '../components/UI/ButtonDeleteNote';
-import ButtonEditNote from '../components/UI/ButtonEditNote';
-import TagList from '../components/TagList';
-import NoteText from '../components/UI/NoteText';
-
-const NoteWrap = styled(Card)({
-  position: 'relative',
-  marginBottom: '0.5rem',
-  padding: '0.5rem 0.5rem 0',
-  color: '#5A5A65',
-  '&:last-child': {
-    marginBottom: 0,
-  },
-});
+import { deleteNote } from '../../store/actions/board';
+import ModalEditNote from '../ModalEditNote';
+import NoteWrap from './NoteWrap';
+import NoteText from '../../components/UI/NoteText';
+import TagList from '../../components/TagList';
+import ButtonDeleteNote from './ButtonDeleteNote';
+import ButtonEditNote from './ButtonEditNote';
 
 const Note = ({ note, onDeleteNote }) => {
   const [isOpenEditNoteModal, setIsOpenEditNoteModal] = useState(false);
@@ -28,31 +19,17 @@ const Note = ({ note, onDeleteNote }) => {
 
   return (
     <NoteWrap>
-      <ButtonDeleteNote
-        deleteNote={() => onDeleteNote(noteId)}
-        sx={{
-          position: 'absolute',
-          top: 0,
-          right: 4,
-        }}
-      />
-      <ButtonEditNote
-        openEditModal={() => setIsOpenEditNoteModal(true)}
-        sx={{
-          position: 'absolute',
-          top: 0,
-          right: 50,
-        }}
-      />
+      <ButtonEditNote openEditNoteModal={() => setIsOpenEditNoteModal(true)} />
+      <ButtonDeleteNote deleteNote={() => onDeleteNote(noteId)} />
       <Typography variant="body2">{date}</Typography>
       <NoteText>{noteText}</NoteText>
       {noteTags.length > 0 && <TagList tags={noteTags} />}
-      {isOpenEditNoteModal ? (
+      {isOpenEditNoteModal && (
         <ModalEditNote
           note={note}
           closeModal={() => setIsOpenEditNoteModal(false)}
         />
-      ) : null}
+      )}
     </NoteWrap>
   );
 };
