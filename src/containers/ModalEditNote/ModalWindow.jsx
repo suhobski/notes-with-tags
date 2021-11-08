@@ -1,4 +1,4 @@
-import { Card, styled } from '@material-ui/core';
+import { Card, styled } from '@mui/material';
 
 const ModalWindow = styled(Card)({
   margin: '0.5rem',

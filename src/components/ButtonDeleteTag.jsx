@@ -1,6 +1,6 @@
 import React from 'react';
-import { styled } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
+import { styled } from '@mui/material';
 
 const ButtonDelete = styled('button')({
   position: 'absolute',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '@material-ui/core';
+import { styled } from '@mui/material';
 
 const HeaderWrap = styled('header')({
   padding: '0.5rem',

@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uid from 'uid2';
-import { Button, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { addNote } from '../../store/actions/board';
 import TextInput from '../../components/UI/TextInput';
 import TagList from '../../components/TagList';
 import FieldsetWrap from '../../components/UI/FieldsetWrap';
 import CreateNoteFormWrap from './CreateNoteFormWrap';
+import FormButton from '../../components/UI/FormButton';
 
 const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
   const [note, setNote] = useState('');
@@ -69,9 +70,9 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
           </Box>
           <TagList tags={tags} />
         </FieldsetWrap>
-        <Button type="submit" variant="contained" fullWidth>
+        <FormButton type="submit" variant="contained" fullWidth>
           Ok
-        </Button>
+        </FormButton>
       </Box>
     </CreateNoteFormWrap>
   );

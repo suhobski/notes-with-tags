@@ -1,5 +1,4 @@
-import { Card } from '@mui/material';
-import { styled } from '@material-ui/core';
+import { Card, styled } from '@mui/material';
 
 const BoardWrap = styled(Card)({
   padding: '1rem 0.5rem',

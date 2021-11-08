@@ -1,4 +1,4 @@
-import { Box, styled, Button } from '@material-ui/core';
+import { Box, styled, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';

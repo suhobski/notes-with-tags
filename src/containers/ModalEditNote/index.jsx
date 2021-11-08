@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { editNote } from '../../store/actions/board';
 import EditText from './EditText';
@@ -9,6 +8,7 @@ import ModalHeader from './ModalHeader';
 import ModalWrap from '../../components/UI/ModalWrap';
 import ModalWindow from './ModalWindow';
 import Footer from './Footer';
+import FormButton from '../../components/UI/FormButton';
 
 const ModalEditNote = ({ closeModal, note, onEditNote }) => {
   const { noteDate, noteId, noteTags, noteText } = note;
@@ -43,12 +43,12 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
         />
         <EditTags newTags={newTags} updateTags={(tags) => setNewTags(tags)} />
         <Footer>
-          <Button type="submit" variant="contained" fullWidth>
+          <FormButton type="submit" variant="contained" fullWidth>
             Ok
-          </Button>
-          <Button onClick={closeModal} fullWidth variant="contained">
+          </FormButton>
+          <FormButton onClick={closeModal} fullWidth variant="contained">
             Cancel
-          </Button>
+          </FormButton>
         </Footer>
       </ModalWindow>
     </ModalWrap>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { styled } from '@material-ui/core';
-import ButtonDeleteTag from './UI/ButtonDeleteTag';
+import { styled } from '@mui/material';
+import ButtonDeleteTag from './ButtonDeleteTag';
 
 const List = styled('ul')({
   width: '100%',

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core';
+import { styled } from '@mui/material';
 
 const Header = styled('header')({
   display: 'flex',
