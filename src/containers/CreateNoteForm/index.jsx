@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Typography } from '@material-ui/core';
-import { styled } from '@mui/material/styles';
-import { Box } from '@mui/system';
 import { connect } from 'react-redux';
 import uid from 'uid2';
-import { addNote } from '../store/actions/board';
-import TextInput from '../components/UI/TextInput';
-import TagList from '../components/TagList';
-import FieldsetWrap from '../components/UI/FieldsetWrap';
-
-const CreateNote = styled(Card)({
-  padding: '1rem 0.5rem',
-  color: '#5a5a65',
-  background: '#ffffff',
-  borderRadius: '0.75rem',
-  zIndex: 0,
-});
+import { Button, Typography } from '@material-ui/core';
+import { Box } from '@mui/system';
+import { addNote } from '../../store/actions/board';
+import TextInput from '../../components/UI/TextInput';
+import TagList from '../../components/TagList';
+import FieldsetWrap from '../../components/UI/FieldsetWrap';
+import CreateNoteFormWrap from './CreateNoteFormWrap';
 
 const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
   const [note, setNote] = useState('');
@@ -33,7 +25,6 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get('note').length > 0) {
-      // eslint-disable-next-line no-console
       onAddNote({
         noteId: uid(10),
         noteText: data.get('note'),
@@ -47,7 +38,7 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
   };
 
   return (
-    <CreateNote
+    <CreateNoteFormWrap
       onClick={(e) => e.stopPropagation()}
       style={{ display: formDisplay }}
     >
@@ -74,7 +65,7 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
             }}
           >
             <h4>Tags:</h4>
-            <Typography variant="body2">#tagexample</Typography>
+            <Typography variant="caption">#tagexample</Typography>
           </Box>
           <TagList tags={tags} />
         </FieldsetWrap>
@@ -82,7 +73,7 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
           Ok
         </Button>
       </Box>
-    </CreateNote>
+    </CreateNoteFormWrap>
   );
 };
 

@@ -2,9 +2,9 @@ import React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { CardContent, Container, styled } from '@material-ui/core';
 import Header from './components/Header';
-import CreateNoteForm from './containers/CreateNoteForm';
 import Board from './containers/Board';
 import Footer from './components/Footer';
+import CreateNoteForm from './containers/CreateNoteForm';
 
 const AppWrapper = styled(Container)({
   position: 'relative',

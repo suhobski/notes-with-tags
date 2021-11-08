@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Note from '../Note';
 import ModalWrap from '../../components/UI/ModalWrap';
-import CreateNoteForm from '../CreateNoteForm';
 import FieldsetWrap from '../../components/UI/FieldsetWrap';
 import BoardHeader from './BoardHeader';
 import BoardWrap from './BoardWrap';
 import ButtonAddNote from './ButtonAddNote';
+import CreateNoteForm from '../CreateNoteForm';
 
 const Board = ({ filterTag, notes }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
