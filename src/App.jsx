@@ -24,19 +24,21 @@ const MainContent = styled(CardContent)({
   alignItems: 'stretch',
   gap: 8,
   padding: '8px 0',
+  '&.mobile': {
+    gridTemplateColumns: 'auto',
+  },
+  '&.desktop': {
+    gridTemplateColumns: 'minmax(300px, 33%) auto',
+  },
 });
 
 const App = () => {
-  const matches = useMediaQuery('(max-width:600px)');
+  const matches = useMediaQuery('(max-width:599px)');
 
   return (
     <AppWrapper maxWidth="md">
       <Header />
-      <MainContent
-        style={{
-          gridTemplateColumns: matches ? 'auto' : 'minmax(300px, 33%) auto',
-        }}
-      >
+      <MainContent className={matches ? 'mobile' : 'desktop'}>
         <CreateNoteForm formDisplay={matches ? 'none' : 'block'} />
         <Board />
       </MainContent>
