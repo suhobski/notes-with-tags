@@ -1,49 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
 import { connect } from 'react-redux';
-import { Box } from '@mui/system';
-import setTag from '../store/actions/filter';
-
-const FilterWrap = styled(Box)({
-  position: 'relative',
-  top: 2,
-  display: 'flex',
-  justifyContent: 'right',
-  height: 48,
-  padding: '0.5rem',
-  color: '#5a5a65',
-});
-
-const FilterInput = styled('input')({
-  display: 'inline-block',
-  width: '100%',
-  paddingLeft: 8,
-  border: 'none',
-  borderBottom: '1px solid #5a5a65',
-  background: '#f8f8f8',
-  '&:focus': {
-    border: 'none',
-    outline: 'none',
-    borderBottom: '2px solid #5a5a65',
-  },
-});
-
-const CloseFilterButton = styled(IconButton)({
-  position: 'absolute',
-  top: -4,
-  right: 2,
-  display: 'inlone-block',
-});
+import setTag from '../../store/actions/filter';
+import CloseFilterButton from './CloseFilterButton';
+import FilterInput from './FilterInput';
+import FilterWrap from './FilterWrap';
 
 const Filter = ({ onSetTag, closeFilter }) => {
-  const [inputTag, setInputTagTag] = useState('');
+  const [inputTag, setInputTag] = useState('');
 
   const handleChange = (e) => {
     const tagText = e.target.value;
-    setInputTagTag(tagText);
+    setInputTag(tagText);
     onSetTag(`#${tagText.trim()}`);
   };
 
