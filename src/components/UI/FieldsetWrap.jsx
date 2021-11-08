@@ -20,12 +20,12 @@ export default function FieldsetWrap({ children, pb, minHeight }) {
 
 FieldsetWrap.defaultProps = {
   children: null,
-  pb: 1,
+  pb: '8px',
   minHeight: 'unset',
 };
 
 FieldsetWrap.propTypes = {
   children: PropTypes.node,
-  pb: PropTypes.number,
-  minHeight: PropTypes.number,
+  pb: PropTypes.string,
+  minHeight: PropTypes.string,
 };
