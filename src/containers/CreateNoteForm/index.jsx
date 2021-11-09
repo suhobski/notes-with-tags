@@ -24,11 +24,10 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    if (data.get('note').length > 0) {
+    if (note.length > 0) {
       onAddNote({
         noteId: uid(10),
-        noteText: data.get('note'),
+        noteText: note,
         noteTags: tags,
         noteDate: new Date(),
       });
@@ -38,10 +37,17 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.ctrlKey && e.code === 'Enter') {
+      handleSubmit(e);
+    }
+  };
+
   return (
     <CreateNoteFormWrap
       onClick={(e) => e.stopPropagation()}
       style={{ display: formDisplay }}
+      onKeyPress={handleKeyPress}
     >
       <h2 style={{ marginBottom: '0.5rem' }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
