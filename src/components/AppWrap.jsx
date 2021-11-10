@@ -5,7 +5,7 @@ const AppWrap = styled(Container)({
   display: 'grid',
   gridTemplateRows: 'auto 1fr auto',
   minHeight: '100vh',
-  padding: 8,
+  padding: '8px !important',
   borderRadius: 0,
   background: '#4D4D4D',
   fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
