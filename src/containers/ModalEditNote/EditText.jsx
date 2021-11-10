@@ -23,6 +23,7 @@ export default function EditText({ noteText, newText, editText }) {
       <TextInput
         id="editNote"
         name="editNote"
+        autoFocus
         multiline
         maxRows={4}
         label="editNotext"

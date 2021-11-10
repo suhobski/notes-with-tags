@@ -1,6 +1,6 @@
+import React, { useState } from 'react';
 import { Box, styled, Button } from '@mui/material';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import TextInput from '../../components/UI/TextInput';
 import TagList from '../../components/TagList';
@@ -27,7 +27,7 @@ const TagInputWrapper = styled(Box)({
   gridTemplateColumns: 'auto 100px',
 });
 
-export default function EditTags({ newTags, updateTags }) {
+const EditTags = ({ newTags, updateTags }) => {
   const [tag, setTag] = useState('');
   const [errorText, setErrorText] = useState('');
 
@@ -44,7 +44,7 @@ export default function EditTags({ newTags, updateTags }) {
       return;
     }
 
-    if (newTags.includes(newTag)) {
+    if (newTags.includes(`#${newTag}`)) {
       setErrorText('this tag is already in the list');
       return;
     }
@@ -57,8 +57,17 @@ export default function EditTags({ newTags, updateTags }) {
     }
   };
 
-  const deleteTag = (currentTag) =>
+  const handleKeyDown = (e) => {
+    console.log(e.code);
+    if (tag && e.code === 'Enter') {
+      e.preventDefault();
+      handleAddTagClick();
+    }
+  };
+
+  const deleteTag = (currentTag) => {
     updateTags(newTags.filter((item) => item !== currentTag));
+  };
 
   return (
     <FieldsetWrap>
@@ -72,6 +81,7 @@ export default function EditTags({ newTags, updateTags }) {
           onChange={handleInputChange}
           name="addTag"
           label="Write a tag..."
+          onKeyDown={handleKeyDown}
         />
         <ButtonAddTag onClick={handleAddTagClick} variant="contained">
           Add tag
@@ -84,9 +94,11 @@ export default function EditTags({ newTags, updateTags }) {
       </TagInputWrapper>
     </FieldsetWrap>
   );
-}
+};
 
 EditTags.propTypes = {
   newTags: PropTypes.arrayOf(PropTypes.string).isRequired,
   updateTags: PropTypes.func.isRequired,
 };
+
+export default EditTags;

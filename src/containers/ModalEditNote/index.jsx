@@ -28,8 +28,17 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.ctrlKey && e.code === 'Enter') {
+      handleSubmit(e);
+    }
+    if (closeModal && e.code === 'Escape') {
+      closeModal();
+    }
+  };
+
   return (
-    <ModalWrap onClick={closeModal}>
+    <ModalWrap onClick={closeModal} onKeyDown={handleKeyDown} tabIndex="0">
       <ModalWindow
         onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit}

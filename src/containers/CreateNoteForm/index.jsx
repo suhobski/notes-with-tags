@@ -37,9 +37,12 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
     }
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     if (e.ctrlKey && e.code === 'Enter') {
       handleSubmit(e);
+    }
+    if (closeModal && e.code === 'Escape') {
+      closeModal();
     }
   };
 
@@ -47,7 +50,8 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
     <CreateNoteFormWrap
       onClick={(e) => e.stopPropagation()}
       style={{ display: formDisplay }}
-      onKeyPress={handleKeyPress}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
     >
       <h2 style={{ marginBottom: '0.5rem' }}>Create note</h2>
       <Box component="form" onSubmit={handleSubmit} noValidate>
