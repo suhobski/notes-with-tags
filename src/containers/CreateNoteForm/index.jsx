@@ -18,7 +18,10 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
 
   const handleChange = (e) => {
     const noteText = e.target.value;
-    const noteTags = noteText.match(/#[a-zа-я0-9]+/giu);
+    let noteTags = noteText.match(/#[a-zа-я0-9]+/giu);
+    if (noteTags) {
+      noteTags = noteTags.map((tag) => tag.toLowerCase());
+    }
     setTags(Array.from(new Set(noteTags)));
     setNote(noteText);
   };
