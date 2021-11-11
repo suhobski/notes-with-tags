@@ -58,8 +58,7 @@ const EditTags = ({ newTags, updateTags }) => {
   };
 
   const handleKeyDown = (e) => {
-    console.log(e.code);
-    if (tag && e.code === 'Enter') {
+    if (e.code === 'Enter') {
       e.preventDefault();
       handleAddTagClick();
     }
