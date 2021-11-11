@@ -1,7 +1,11 @@
-import { ON_SET_TAG } from '../actions/actionTypes';
+import {
+  ON_SET_TAG,
+  ON_CHANGE_FILTER_VISIBILITY,
+} from '../actions/actionTypes';
 
 const initialState = {
-  tag: '',
+  filterTag: '',
+  isFilterOpen: false,
 };
 
 export default function filterReducer(state = initialState, action) {
@@ -9,7 +13,12 @@ export default function filterReducer(state = initialState, action) {
     case ON_SET_TAG:
       return {
         ...state,
-        tag: action.tag,
+        filterTag: action.filterTag,
+      };
+    case ON_CHANGE_FILTER_VISIBILITY:
+      return {
+        ...state,
+        isFilterOpen: action.filterVisibility,
       };
     default:
       return state;

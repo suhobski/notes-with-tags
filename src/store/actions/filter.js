@@ -1,8 +1,15 @@
-import { ON_SET_TAG } from './actionTypes';
+import { ON_SET_TAG, ON_CHANGE_FILTER_VISIBILITY } from './actionTypes';
 
-export default function setTag(tag) {
+export function setTag(filterTag) {
   return {
     type: ON_SET_TAG,
-    tag,
+    filterTag,
+  };
+}
+
+export function changeFilterVisibility(filterVisibility) {
+  return {
+    type: ON_CHANGE_FILTER_VISIBILITY,
+    filterVisibility,
   };
 }

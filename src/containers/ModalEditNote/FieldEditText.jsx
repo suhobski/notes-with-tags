@@ -5,7 +5,7 @@ import FieldsetWrap from '../../components/UI/FieldsetWrap';
 import NoteText from '../../components/UI/NoteText';
 import TextInput from '../../components/UI/TextInput';
 
-export default function EditText({ noteText, newText, editText }) {
+export default function FieldEditText({ noteText, newText, editText }) {
   const textWithTags = useMemo(() =>
     noteText.replace(
       /#[a-zA-Zа-яА-Я0-9]+/g,
@@ -34,7 +34,7 @@ export default function EditText({ noteText, newText, editText }) {
   );
 }
 
-EditText.propTypes = {
+FieldEditText.propTypes = {
   noteText: PropTypes.string.isRequired,
   newText: PropTypes.string.isRequired,
   editText: PropTypes.func.isRequired,

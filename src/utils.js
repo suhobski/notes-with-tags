@@ -1,4 +1,4 @@
-function validateTag(tag, newTags) {
+export function validateTag(tag, newTags) {
   const newTag = tag.toLowerCase().trim();
 
   if (/\p{P}+/u.test(newTag) || /\s+/.test(newTag)) {
@@ -16,4 +16,16 @@ function validateTag(tag, newTags) {
   return newTag;
 }
 
-export default validateTag;
+export function validateFilterTag(tag) {
+  if (tag.length === 0) {
+    return tag;
+  }
+
+  const newTag = tag.toLowerCase().trim();
+
+  if (/\p{P}+/u.test(newTag) || /\s+/.test(newTag)) {
+    throw new SyntaxError('please enter only letters and numbers');
+  }
+
+  return newTag;
+}

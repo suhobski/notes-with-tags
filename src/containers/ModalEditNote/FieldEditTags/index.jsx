@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Box, styled, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import TextInput from '../../components/UI/TextInput';
-import TagList from '../../components/TagList';
-import FieldsetWrap from '../../components/UI/FieldsetWrap';
-import validateTag from '../../utils';
+import TextInput from '../../../components/UI/TextInput';
+import TagList from '../../../components/TagList';
+import FieldsetWrap from '../../../components/UI/FieldsetWrap';
+import { validateTag } from '../../../utils';
 
 const ButtonAddTag = styled(Button)({
   display: 'inline-block',
@@ -28,7 +28,7 @@ const TagInputWrapper = styled(Box)({
   gridTemplateColumns: 'auto 100px',
 });
 
-const EditTags = ({ newTags, updateTags }) => {
+const FieldEditTags = ({ newTags, updateTags }) => {
   const [tag, setTag] = useState('');
   const [errorText, setErrorText] = useState('');
 
@@ -85,9 +85,9 @@ const EditTags = ({ newTags, updateTags }) => {
   );
 };
 
-EditTags.propTypes = {
+FieldEditTags.propTypes = {
   newTags: PropTypes.arrayOf(PropTypes.string).isRequired,
   updateTags: PropTypes.func.isRequired,
 };
 
-export default EditTags;
+export default FieldEditTags;

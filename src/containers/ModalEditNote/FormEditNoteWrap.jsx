@@ -1,6 +1,6 @@
 import { Card, styled } from '@mui/material';
 
-const ModalWindow = styled(Card)({
+const FormEditNoteWrap = styled(Card)({
   margin: '0.5rem',
   padding: '1rem',
   borderRadius: 8,
@@ -9,4 +9,4 @@ const ModalWindow = styled(Card)({
   zIndex: 60,
 });
 
-export default ModalWindow;
+export default FormEditNoteWrap;

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editNote } from '../../store/actions/board';
-import EditText from './EditText';
-import EditTags from './EditTags';
+import FieldEditText from './FieldEditText';
+import FieldEditTags from './FieldEditTags';
 import ModalHeader from './ModalHeader';
 import ModalWrap from '../../components/UI/ModalWrap';
-import ModalWindow from './ModalWindow';
+import FormEditNoteWrap from './FormEditNoteWrap';
 import Footer from './Footer';
 import FormButton from '../../components/UI/FormButton';
 
@@ -39,18 +39,21 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
 
   return (
     <ModalWrap onClick={closeModal} onKeyDown={handleKeyDown} tabIndex="0">
-      <ModalWindow
+      <FormEditNoteWrap
         onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit}
         component="form"
       >
         <ModalHeader noteDate={noteDate} />
-        <EditText
+        <FieldEditText
           noteText={noteText}
           newText={newText}
           editText={(text) => setNewText(text)}
         />
-        <EditTags newTags={newTags} updateTags={(tags) => setNewTags(tags)} />
+        <FieldEditTags
+          newTags={newTags}
+          updateTags={(tags) => setNewTags(tags)}
+        />
         <Footer>
           <FormButton type="submit" variant="contained" fullWidth>
             Ok
@@ -59,7 +62,7 @@ const ModalEditNote = ({ closeModal, note, onEditNote }) => {
             Cancel
           </FormButton>
         </Footer>
-      </ModalWindow>
+      </FormEditNoteWrap>
     </ModalWrap>
   );
 };

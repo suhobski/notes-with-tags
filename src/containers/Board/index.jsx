@@ -14,7 +14,6 @@ const Board = ({ filterTag, notes }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [buttonRotate, setButtonRotate] = useState(0);
   const [boardNotes, setBoardNotes] = useState([]);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const matches = useMediaQuery('(min-width:600px)');
 
   const handleButton = () => {
@@ -29,8 +28,9 @@ const Board = ({ filterTag, notes }) => {
   };
 
   useEffect(() => {
-    const regexp = new RegExp(filterTag, 'i');
-    if (filterTag.length >= 2) {
+    const regexp = new RegExp(`#${filterTag}`, 'i');
+
+    if (filterTag.length) {
       setBoardNotes(notes.filter((note) => regexp.test(note.noteTags)));
     } else {
       setBoardNotes(notes);
@@ -39,11 +39,7 @@ const Board = ({ filterTag, notes }) => {
 
   return (
     <BoardWrap>
-      <BoardHeader
-        isFilterOpen={isFilterOpen}
-        closeFilter={() => setIsFilterOpen(false)}
-        openFilter={() => setIsFilterOpen(true)}
-      />
+      <BoardHeader />
       <FieldsetWrap>
         <h2 style={{ marginBottom: 8 }}>Notes</h2>
         {boardNotes.length === 0 ? (
@@ -84,7 +80,7 @@ Board.propTypes = {
 function mapStateToProps(state) {
   return {
     notes: state.board.notes,
-    filterTag: state.filter.tag,
+    filterTag: state.filter.filterTag,
   };
 }
 

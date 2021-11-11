@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Filter from '../Filter';
+import { changeFilterVisibility } from '../../store/actions/filter';
 
 const Header = styled('header')({
   display: 'grid',
@@ -17,23 +19,35 @@ const Header = styled('header')({
   borderRadius: 4,
 });
 
-export default function BoardHeader({ isFilterOpen, closeFilter, openFilter }) {
-  return (
-    <Header>
-      <h2>Filter</h2>
-      {isFilterOpen ? (
-        <Filter closeFilter={closeFilter} />
-      ) : (
-        <IconButton size="large" onClick={openFilter} mb="0">
-          <SearchIcon />
-        </IconButton>
-      )}
-    </Header>
-  );
-}
+const BoardHeader = ({ isFilterOpen, changeVisibility }) => (
+  <Header>
+    <h2>Filter</h2>
+    {isFilterOpen ? (
+      <Filter />
+    ) : (
+      <IconButton size="large" onClick={() => changeVisibility(true)} mb="0">
+        <SearchIcon />
+      </IconButton>
+    )}
+  </Header>
+);
 
 BoardHeader.propTypes = {
   isFilterOpen: PropTypes.bool.isRequired,
-  closeFilter: PropTypes.func.isRequired,
-  openFilter: PropTypes.func.isRequired,
+  changeVisibility: PropTypes.func.isRequired,
 };
+
+function mapStateToProps(state) {
+  return {
+    isFilterOpen: state.filter.isFilterOpen,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeVisibility: (filterVisibility) =>
+      dispatch(changeFilterVisibility(filterVisibility)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoardHeader);

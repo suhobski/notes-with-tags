@@ -46,6 +46,8 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
     }
   };
 
+  console.log('деструктурировать поле тегов');
+
   return (
     <CreateNoteFormWrap
       onClick={(e) => e.stopPropagation()}

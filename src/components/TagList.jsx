@@ -1,49 +1,45 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { styled } from '@mui/material';
-import ButtonDeleteTag from './ButtonDeleteTag';
+import { connect } from 'react-redux';
+import Tag from './Tag';
+import TagListWrap from './TagListWrap';
+import { changeFilterVisibility, setTag } from '../store/actions/filter';
 
-const List = styled('ul')({
-  width: '100%',
-  minHeight: 32,
-  margin: '0',
-  padding: 0,
-  border: 'none',
-  color: '#ffffff',
-});
+const TagList = ({ tags, setFilterTag, changeVisibility }) => {
+  const findTag = (tag) => {
+    console.log(tag.slice(1));
+    changeVisibility(true);
+    setFilterTag(tag.slice(1));
+  };
 
-const Tag = styled('li')({
-  position: 'relative',
-  display: 'inline-block',
-  margin: '0 0.5rem 0.5rem 0',
-  padding: '0 0.25rem',
-  listStyleType: 'none',
-  borderRadius: 4,
-  background: '#5a5a65',
-  color: '#ffffff',
-  cursor: 'pointer',
-});
-
-export default function TagList({ tags, deleteTag = null }) {
   return (
-    <List>
+    <TagListWrap>
       {tags?.length > 0 &&
         tags.map((tag) => (
-          <Tag key={tag} onClick={() => deleteTag(tag)}>
+          <Tag key={tag} onClick={() => findTag(tag)}>
             {tag}
-            {deleteTag && <ButtonDeleteTag deleteTag={() => deleteTag(tag)} />}
           </Tag>
         ))}
-    </List>
+    </TagListWrap>
   );
-}
+};
 
 TagList.defaultProps = {
   tags: [],
-  deleteTag: null,
 };
 
 TagList.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
-  deleteTag: PropTypes.func,
+  setFilterTag: PropTypes.func.isRequired,
+  changeVisibility: PropTypes.func.isRequired,
 };
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setFilterTag: (tag) => dispatch(setTag(tag)),
+    changeVisibility: (filterVisibility) =>
+      dispatch(changeFilterVisibility(filterVisibility)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(TagList);
