@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import TagListWrap from '../../../components/TagListWrap';
-import Tag from '../../../components/Tag';
+import TagListWrap from '../../../components/UI/TagListWrap';
+import Tag from '../../../components/UI/Tag';
 import ButtonDeleteTag from '../../../components/ButtonDeleteTag';
 
 export default function ModifyTagList({ tags, deleteTag }) {

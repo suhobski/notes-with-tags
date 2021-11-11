@@ -1,13 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import Tag from './Tag';
-import TagListWrap from './TagListWrap';
+import Tag from './UI/Tag';
+import TagListWrap from './UI/TagListWrap';
 import { changeFilterVisibility, setTag } from '../store/actions/filter';
 
 const TagList = ({ tags, setFilterTag, changeVisibility }) => {
   const findTag = (tag) => {
-    console.log(tag.slice(1));
     changeVisibility(true);
     setFilterTag(tag.slice(1));
   };

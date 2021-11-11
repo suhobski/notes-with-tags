@@ -3,9 +3,9 @@ import { Box, styled, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import TextInput from '../../../components/UI/TextInput';
-import TagList from '../../../components/TagList';
 import FieldsetWrap from '../../../components/UI/FieldsetWrap';
 import { validateTag } from '../../../utils';
+import ModifyTagList from './ModifyTagList';
 
 const ButtonAddTag = styled(Button)({
   display: 'inline-block',
@@ -63,7 +63,7 @@ const FieldEditTags = ({ newTags, updateTags }) => {
       <Typography variant="subtitle1" fontWeight="600" gutterBottom>
         Tags:
       </Typography>
-      <TagList tags={newTags} deleteTag={deleteTag} />
+      <ModifyTagList tags={newTags} deleteTag={deleteTag} />
       <TagInputWrapper>
         <TextInput
           value={tag}

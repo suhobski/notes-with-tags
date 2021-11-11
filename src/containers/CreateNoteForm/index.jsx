@@ -10,6 +10,7 @@ import TagList from '../../components/TagList';
 import FieldsetWrap from '../../components/UI/FieldsetWrap';
 import CreateNoteFormWrap from './CreateNoteFormWrap';
 import FormButton from '../../components/UI/FormButton';
+import TagsFieldHeader from './TagsFieldHeader';
 
 const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
   const [note, setNote] = useState('');
@@ -46,8 +47,6 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
     }
   };
 
-  console.log('деструктурировать поле тегов');
-
   return (
     <CreateNoteFormWrap
       onClick={(e) => e.stopPropagation()}
@@ -69,17 +68,10 @@ const CreateNoteForm = ({ closeModal, onAddNote, formDisplay }) => {
           onChange={handleChange}
         />
         <FieldsetWrap pb="0" minHeight="78px">
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pb: '8px',
-            }}
-          >
+          <TagsFieldHeader>
             <h4>Tags:</h4>
             <Typography variant="caption">#tagexample</Typography>
-          </Box>
+          </TagsFieldHeader>
           <TagList tags={tags} />
         </FieldsetWrap>
         <FormButton type="submit" variant="contained" fullWidth>
