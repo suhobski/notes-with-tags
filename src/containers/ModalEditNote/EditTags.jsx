@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import TextInput from '../../components/UI/TextInput';
 import TagList from '../../components/TagList';
 import FieldsetWrap from '../../components/UI/FieldsetWrap';
+import validateTag from '../../utils';
 
 const ButtonAddTag = styled(Button)({
   display: 'inline-block',
@@ -37,23 +38,12 @@ const EditTags = ({ newTags, updateTags }) => {
   };
 
   const handleAddTagClick = () => {
-    const newTag = tag.toLowerCase().trim();
-
-    if (/\p{P}+/u.test(newTag) || /\s+/.test(newTag)) {
-      setErrorText('please enter only letters and numbers');
-      return;
-    }
-
-    if (newTags.includes(`#${newTag}`)) {
-      setErrorText('this tag is already in the list');
-      return;
-    }
-
-    if (newTag.length > 0) {
+    try {
+      const newTag = validateTag(tag, newTags);
       updateTags([...newTags, `#${newTag}`]);
       setTag('');
-    } else {
-      setErrorText('min. length is one character');
+    } catch (e) {
+      setErrorText(e.message);
     }
   };
 
